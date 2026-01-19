@@ -21,8 +21,12 @@ user-invocable: true
 
 **Skill 协作流程**:
 ```
-manga-story-bible ──→ manga-designer ──→ prompt-generator ──→ generating-images
-    (前期创作)          (分镜排版)          (提示词优化)          (图像生成)
+manga-story-bible ──→ manga-designer ──────────────────→ generating-images
+    (前期创作)         (分镜排版 + 整页Prompt)              (一次性生成完整页)
+                              │
+                              ├→ Phase 4: 面板描述
+                              ├→ Phase 4.5: 整页Prompt合并 (推荐)
+                              └→ Phase 5: 视觉生成
 ```
 
 ---
@@ -458,15 +462,285 @@ shounen manga style, ink drawing aesthetic
 
 ---
 
+## Phase 4.5: 整页 Prompt 生成模式（推荐）
+
+> **核心理念**: 将一页漫画的所有格子合并成一个 prompt，一次 API 调用生成完整漫画页。
+
+### 4.5.1 为什么使用整页模式？
+
+| 传统单格模式 | 整页合并模式 |
+|-------------|-------------|
+| 每格单独生成 | 一次生成整页 |
+| 需要后期拼接 | 直接输出完整页面 |
+| 格子风格可能不统一 | 风格/光影自然统一 |
+| 多次 API 调用 | 单次 API 调用 |
+
+**适用场景**:
+- 四格漫画（1-4页）
+- 标准漫画页面（4-6格）
+- 需要格子间风格统一的场景
+
+### 4.5.2 整页 Prompt 结构模板
+
+```
+[媒介类型], [布局描述], [格子边框风格], [间距描述],
+
+[位置1] PANEL: [镜头], [角色描述], [动作], [表情], [背景], [效果],
+
+[位置2] PANEL: [镜头], [角色描述], [动作], [表情], [背景], [效果],
+
+[位置3] PANEL: [镜头], [角色描述], [动作], [表情], [背景], [效果],
+
+[位置4] PANEL: [镜头], [角色描述], [动作], [表情], [背景], [效果],
+
+[整体风格描述], [技术参数] --ar [比例] --v 7
+```
+
+### 4.5.3 布局描述语法
+
+**布局关键词对照表**:
+
+| 漫画类型 | 布局描述词 | 说明 |
+|---------|-----------|------|
+| 少年漫画 4格 | `2x2 grid layout` | 2行2列规则网格 |
+| 少女漫画 6格 | `2x3 grid layout` | 2行3列规则网格 |
+| 四格漫画 | `4-koma vertical layout, 4 panels stacked vertically` | 4格纵向堆叠 |
+| 不规则布局 | `asymmetric manga layout` | 自由排列 |
+| 双页跨页 | `double-page spread` | 跨页大图 |
+| 动态布局 | `dynamic panel arrangement with varied sizes` | 大小不一的动态排列 |
+
+**边框与间距描述**:
+
+| 元素 | 描述词示例 |
+|------|-----------|
+| 黑色边框 | `black panel borders` |
+| 白色边框 | `white panel borders` |
+| 无边框 | `borderless panels`, `bleeding panels` |
+| 白色间距 | `white gutters between panels` |
+| 窄间距 | `thin gutters`, `minimal spacing` |
+
+### 4.5.4 位置标识规范
+
+**2x2 网格布局 (RTL 阅读顺序)**:
+
+```
+┌─────────────────────────┐
+│  TOP-RIGHT │  TOP-LEFT  │  ← 第1行
+│    (1)     │    (2)     │
+├────────────┼────────────┤
+│ BOTTOM-RIGHT│ BOTTOM-LEFT│  ← 第2行
+│    (3)     │    (4)     │
+└─────────────────────────┘
+```
+
+**位置标识词汇**:
+- `TOP-RIGHT PANEL:` - 右上（RTL第1格）
+- `TOP-LEFT PANEL:` - 左上（RTL第2格）
+- `BOTTOM-RIGHT PANEL:` - 右下（RTL第3格）
+- `BOTTOM-LEFT PANEL:` - 左下（RTL第4格）
+
+**四格漫画（纵向堆叠）**:
+
+```
+┌─────────┐
+│ PANEL 1 │  ← 起
+├─────────┤
+│ PANEL 2 │  ← 承
+├─────────┤
+│ PANEL 3 │  ← 転
+├─────────┤
+│ PANEL 4 │  ← 結
+└─────────┘
+```
+
+**位置标识词汇**:
+- `PANEL 1:` 或 `FIRST PANEL:` - 起
+- `PANEL 2:` 或 `SECOND PANEL:` - 承
+- `PANEL 3:` 或 `THIRD PANEL:` - 転
+- `PANEL 4:` 或 `FOURTH PANEL:` - 結
+
+### 4.5.5 漫画类型适配表
+
+| 漫画类型 | 布局描述词 | 位置标识 | 推荐 --ar | 推荐分辨率 |
+|---------|-----------|---------|-----------|-----------|
+| 少年漫画 4格 | `manga page, 2x2 grid layout` | TOP-RIGHT, TOP-LEFT, BOTTOM-RIGHT, BOTTOM-LEFT | 2:3 | 1024x1536 |
+| 少女漫画 6格 | `manga page, 2x3 grid layout` | 同上 + MIDDLE-RIGHT, MIDDLE-LEFT | 2:3 | 1024x1536 |
+| 四格漫画 | `4-koma manga page, 4 panels stacked vertically` | PANEL 1, PANEL 2, PANEL 3, PANEL 4 | 9:16 | 1024x1792 |
+| 同人志 | `manga page, asymmetric layout` | 自定义位置描述 | 2:3 | 1024x1536 |
+| 双页跨页 | `double-page manga spread` | LEFT-PAGE, RIGHT-PAGE | 16:9 | 1792x1024 |
+
+### 4.5.6 完整示例
+
+#### 示例 A: 少年漫画 4 格（2x2 网格）
+
+**场景**: 主角在夜晚的城市街头对峙
+
+**Phase 4 输入**（面板描述）:
+```yaml
+第1页:
+  布局: 2x2 网格
+
+  格子1:
+    位置: 右上（RTL第1格）
+    镜头: 中景，略仰视
+    角色: 主角林浩
+    动作: 站立，双手插兜
+    表情: 冷漠、警惕
+    背景: 城市夜景，霓虹灯
+    效果: 无
+
+  格子2:
+    位置: 左上（第2格）
+    镜头: 特写
+    角色: 林浩的眼睛
+    动作: 眼神锐利
+    效果: 集中线从中心放射
+
+  格子3:
+    位置: 右下（第3格）
+    镜头: 远景
+    角色: 街道剪影中的主角
+    背景: 空旷街道，路灯投下长影
+    效果: 威压感氛围
+
+  格子4:
+    位置: 左下（第4格）
+    镜头: 特写
+    角色: 握紧的拳头
+    效果: 速度线表现紧张感
+    光效: 侧面戏剧性打光
+```
+
+**Phase 4.5 输出**（整页 Prompt）:
+```
+manga page, 2x2 grid layout, black panel borders, white gutters between panels,
+
+TOP-RIGHT PANEL: medium shot slight low angle, young man with spiky black hair wearing school uniform, standing with hands in pockets, cold vigilant expression, night city background with neon lights,
+
+TOP-LEFT PANEL: extreme close-up, intense sharp eyes with determined gaze, focus lines radiating from center,
+
+BOTTOM-RIGHT PANEL: wide shot, empty street at night, streetlamps casting long shadows, protagonist silhouette in distance, menacing ominous atmosphere,
+
+BOTTOM-LEFT PANEL: close-up of tightly clenched fist, dramatic side lighting, speed lines indicating tension,
+
+black and white manga style, high contrast, screentone shading, shounen manga aesthetic, professional manga quality --ar 2:3 --v 7
+```
+
+#### 示例 B: 四格漫画（纵向堆叠）
+
+**场景**: 搞笑日常 - 偷吃蛋糕被发现
+
+**Phase 4 输入**（面板描述）:
+```yaml
+第1页:
+  布局: 四格漫画（纵向）
+  风格: 可爱搞笑风
+
+  格子1 (起):
+    镜头: 中景
+    角色: 乱发青年
+    动作: 打开冰箱门，回头张望
+    表情: 紧张偷偷摸摸
+    背景: 厨房
+
+  格子2 (承):
+    镜头: 特写
+    角色: 青年的眼睛
+    动作: 盯着蛋糕
+    效果: 闪闪发光，戏剧性光效
+    表情: 渴望
+
+  格子3 (転):
+    镜头: 中景
+    角色: 猫
+    动作: 坐在青年身后
+    表情: 冷漠审判般的眼神
+    效果: 阴森的阴影
+
+  格子4 (結):
+    镜头: 中景
+    角色: 青年 + 猫
+    动作: 青年僵住，蛋糕从手中掉落
+    效果: 搞笑效果线
+    表情: 震惊
+```
+
+**Phase 4.5 输出**（整页 Prompt）:
+```
+4-koma manga page, 4 panels stacked vertically, black borders, white background,
+
+PANEL 1: medium shot, young man with messy hair opening refrigerator door, looking over shoulder nervously, sneaky expression, kitchen background,
+
+PANEL 2: close-up, sparkling eyes staring at cake, dramatic lighting, desire expression, sparkle effects,
+
+PANEL 3: medium shot, cat sitting behind the man, cold judgmental stare, ominous shadow looming,
+
+PANEL 4: medium shot, man frozen in shock, cake falling from hands, cat still staring coldly, comedic effect lines,
+
+cute manga style, simple clean lines, comedic 4-koma aesthetic, expressive characters --ar 9:16 --v 7
+```
+
+### 4.5.7 整页模式工作流程
+
+```
+Phase 4 面板描述
+      ↓
+Phase 4.5 整页 Prompt 合并
+      ↓
+      ├→ [可选] 草稿迭代: --draft 快速预览
+      ↓
+Phase 5 generating-images 一次性生成
+      ↓
+完整漫画页图像
+```
+
+**草稿迭代流程**:
+1. 添加 `--draft` 参数快速生成（10x 更快）
+2. 检查布局、构图、角色位置
+3. 调整 prompt 细节
+4. 最终渲染移除 `--draft`，添加 `--q 2`
+
+### 4.5.8 常见问题与解决
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 格子数量不对 | 布局描述不够明确 | 明确指定 `2x2 grid`, `4 panels` 等 |
+| 格子内容错位 | 位置标识不清晰 | 使用明确的 `TOP-RIGHT PANEL:` 等标识 |
+| 风格不统一 | 每格描述风格词汇不同 | 将风格描述放在 prompt 末尾作为全局设定 |
+| 人物不一致 | 缺少角色统一描述 | 在每格保持相同的角色外貌关键词 |
+| 生成比例错误 | --ar 参数不匹配 | 参考漫画类型适配表选择正确 --ar |
+
+---
+
 ## Phase 5: 视觉生成（可选）
 
 ### 5.1 集成 generating-images
 
-如果用户希望直接生成面板图像：
+**推荐**: 使用 Phase 4.5 整页 Prompt 进行一次性生成，获得完整漫画页面。
+
+#### 整页生成模式（推荐）
 
 ```
 → 调用 /generating-images
-→ 输入: Phase 4 生成的提示词
+→ 输入: Phase 4.5 生成的整页 Prompt
+→ 参数映射:
+   - --ar 2:3 → 1024x1536 (标准漫画页)
+   - --ar 9:16 → 1024x1792 (四格漫画)
+   - --ar 16:9 → 1792x1024 (双页跨页)
+```
+
+**命令示例**:
+```bash
+node /path/to/tuzi-client.js "manga page, 2x2 grid layout... --ar 2:3 --v 7"
+```
+
+#### 单格生成模式（备选）
+
+如果需要单独生成某个面板：
+
+```
+→ 调用 /generating-images
+→ 输入: Phase 4 生成的单格提示词
 → 参数映射:
    - --ar 3:4 → 768x1024 (竖版面板)
    - --ar 4:3 → 1024x768 (横版面板)

@@ -17,7 +17,9 @@ generated-images/
 
 .claude/skills/generating-images/node_modules/
 .claude/skills/generating-images/package.json
+.claude/skills/generating-images/package-lock.json
 .claude/skills/generating-images/.env.local.example
 
 /imgs-reference/
 /nice_prompts/
+/package-lock.json
