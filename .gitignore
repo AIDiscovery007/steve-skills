@@ -1,0 +1,23 @@
+# API credentials
+.env.local
+.env
+
+# TypeScript compiled output
+.claude/skills/prompt-generator/api/*.js
+.claude/skills/prompt-generator/api/*.d.ts
+
+# Node modules (only @types/node for TypeScript)
+.claude/skills/prompt-generator/api/node_modules/
+.claude/skills/prompt-generator/api/package-lock.json
+
+# Generated images
+generated-images/
+*.tuzi-temp.png
+
+
+.claude/skills/generating-images/node_modules/
+.claude/skills/generating-images/package.json
+.claude/skills/generating-images/.env.local.example
+
+/imgs-reference/
+/nice_prompts/

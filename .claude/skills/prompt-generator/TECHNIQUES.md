@@ -1,6 +1,6 @@
-# Prompt Writing Techniques Reference
+# Prompt Writing Techniques Reference (Midjourney V7)
 
-Comprehensive guide to the 8 core prompt writing techniques for AI image generation.
+Comprehensive guide to 10 core prompt writing techniques for AI image generation, optimized for Midjourney V7.
 
 ---
 
@@ -14,6 +14,8 @@ Comprehensive guide to the 8 core prompt writing techniques for AI image generat
 6. [Professional Terminology Technique](#6-professional-terminology-technique)
 7. [Hierarchical Description Technique](#7-hierarchical-description-technique)
 8. [Tension Creation Technique](#8-tension-creation-technique)
+9. [Prompt Weighting Technique](#9-prompt-weighting-technique) **(NEW V7)**
+10. [Positive-First Description Technique](#10-positive-first-description-technique) **(NEW V7)**
 
 ---
 
@@ -21,118 +23,49 @@ Comprehensive guide to the 8 core prompt writing techniques for AI image generat
 
 ### Principle
 
-AI image generators tend to create "rich" compositions with multiple elements. Using "1" before key elements actively constrains the AI to generate exactly one instance, preventing unwanted repetition or scattered composition.
+AI generators tend to create "rich" compositions with multiple elements. Using "1" before key elements actively constrains generation to exactly one instance, preventing unwanted repetition.
 
-### Core Concept
-
-**The number "1" acts as a precision constraint**, telling the AI:
-- Generate exactly one instance of this element
+**The number "1" acts as a precision constraint:**
+- Generate exactly one instance
 - Make this the focal point
-- Don't scatter or multiply this element
-- Emphasize uniqueness and singularity
+- Don't scatter or multiply
+- Emphasize uniqueness
 
-### Usage Method
+### Usage
 
 **Syntax**: `1 [element]`
 
-Place "1" directly before the most important subject or elements you want to emphasize.
+Place "1" directly before important subjects or elements you want to emphasize.
 
-### Examples
+### Example
 
-#### Example 1: Portrait
-
-❌ **Bad** (vague, may generate multiple):
 ```
-woman in red hat smoking cigarette
+Streetwear graphic design, 1 close-up cropped face centered,
+1 teal ribbed knit beanie pulled down to cover both eyes,
+1 cigarette clenched between lips with faint smoke wisp,
+moody editorial lighting, high-contrast print-ready look
+--ar 4:5 --v 7
 ```
-**Problem**: AI might generate multiple women, multiple hats, or scattered cigarettes
 
-✅ **Good** (precise, controlled):
-```
-1 close-up face centered, 1 red hat, 1 cigarette
-```
-**Result**: Exactly one woman, one hat, one cigarette - focused composition
-
----
-
-#### Example 2: Product Photography
-
-❌ **Bad**:
-```
-coffee cup on table with flowers
-```
-**Problem**: May generate multiple cups, cluttered flowers
-
-✅ **Good**:
-```
-1 ceramic coffee cup centered, 1 small flower arrangement
-```
-**Result**: Single cup as focus, controlled flower presence
-
----
-
-#### Example 3: Scene Composition
-
-❌ **Bad**:
-```
-tree in landscape with mountains
-```
-**Problem**: May generate multiple trees, cluttered landscape
-
-✅ **Good**:
-```
-1 lone tree in foreground, mountain range background
-```
-**Result**: Emphasis on singular tree, clear focal point
-
----
+**Why it works:**
+- "1 face" → prevents multiple faces
+- "1 beanie" → emphasizes this as THE focal prop
+- "1 cigarette" → prevents multiple/scattered cigarettes
+- Creates focused, intentional composition
 
 ### When to Use
 
-✅ **Use "1" when**:
-- You want a clear, single focal point
-- Preventing element multiplication is crucial
-- Creating minimalist or focused compositions
-- The subject should be unique/singular
-- Portrait work (1 person, 1 face)
+✅ **Use "1" when:**
+- Clear, single focal point needed
+- Preventing element multiplication
+- Minimalist/focused compositions
+- Portrait work (1 person)
 - Product photography (1 product)
 
-❌ **Don't use "1" when**:
+❌ **Don't use when:**
 - You actually want multiple elements
-- Creating crowd or busy scenes
-- Pattern or repetition is desired
-- The element should naturally appear in multiples
-
-### Common Patterns
-
-**Portrait Photography**:
-```
-1 [age] [gender], 1 [distinctive feature], 1 [prop/accessory]
-Example: 1 elderly man, 1 weathered hat, 1 walking cane
-```
-
-**Product Photography**:
-```
-1 [product] [position], 1 [accompanying element]
-Example: 1 perfume bottle centered, 1 white rose
-```
-
-**Landscape with Focal Point**:
-```
-1 [main subject] in [position], [background elements]
-Example: 1 red barn in valley, rolling green hills
-```
-
----
-
-### Advanced Application
-
-**Multiple "1" Elements** (creating controlled complexity):
-```
-1 woman in red dress, 1 vintage bicycle, 1 street lamp,
-cobblestone street, afternoon light
-```
-Each "1" element is controlled, but they coexist in a composed scene.
+- Creating crowd scenes
+- Pattern/repetition desired
 
 ---
 
@@ -140,145 +73,53 @@ Each "1" element is controlled, but they coexist in a composed scene.
 
 ### Principle
 
-AI models assign higher weight to concepts that appear multiple times in a prompt. **Repeating key style elements 2-3 times reinforces their importance** and ensures the AI prioritizes these characteristics.
-
-### Core Concept
+AI models assign higher weight to concepts appearing multiple times. **Repeating key style elements 2-3 times reinforces their importance** and ensures prioritization.
 
 **Repetition = Emphasis**
-- First mention: Introduces the concept
-- Second mention: Reinforces the style
-- Third mention: Solidifies the aesthetic
-- More than 3: Diminishing returns, may cause over-emphasis
+- First mention: Introduces concept
+- Second mention: Reinforces style
+- Third mention: Solidifies aesthetic
+- More than 3: Diminishing returns
 
-### Usage Method
+### Usage
 
-Repeat core style descriptors 2-3 times throughout the prompt using:
+Repeat core style descriptors 2-3 times using:
 - Direct repetition (same words)
 - Synonym variation (related terms)
-- Conceptual echoing (similar aesthetic descriptors)
+- Conceptual echoing (similar aesthetics)
 
-### Examples
+### Example
 
-#### Example 1: Retro Poster Style
-
-❌ **Bad** (single mention):
-```
-retro poster, woman with sunglasses
-```
-**Problem**: "Retro" mentioned only once, may be interpreted weakly
-
-✅ **Good** (reinforced 3 times):
 ```
 Retro 80s poster style, 1 woman with sunglasses,
-vintage movie poster aesthetic, 80s design language
-```
-**Result**: Strong retro/80s emphasis through multiple reinforcements
-
-**Breakdown**:
-1. "Retro 80s poster style" - Direct style statement
-2. "vintage movie poster" - Synonym reinforcement
-3. "80s design language" - Conceptual echo
-
----
-
-#### Example 2: Cinematic Mood
-
-❌ **Bad**:
-```
-cinematic photo, moody lighting, urban scene
+vintage movie poster aesthetic, 80s design language,
+bold graphic composition
+--ar 2:3 --stylize 80 --v 7
 ```
 
-✅ **Good**:
-```
-cinematic photography, film noir aesthetic, moody atmosphere,
-urban night scene, cinematic composition, dramatic lighting
-```
-
-**Repetition Analysis**:
-- "Cinematic" appears 2x (photography, composition)
-- "Moody/dramatic" reinforces emotional tone
-- "Film noir" echoes cinematic concept
-
----
-
-#### Example 3: Watercolor Style
-
-❌ **Bad**:
-```
-watercolor painting of flowers
-```
-
-✅ **Good**:
-```
-watercolor painting, delicate floral composition,
-soft watercolor washes, flowing pigment, aquarelle technique
-```
-
-**Repetition Strategy**:
-- "Watercolor" + "aquarelle" (direct + synonym)
-- "Soft washes" + "flowing pigment" (technique reinforcement)
-
----
+**Repetition analysis:**
+- "Retro 80s" → Direct mention
+- "vintage movie poster" → Synonym reinforcement
+- "80s design language" → Conceptual echo
+- Triple reinforcement ensures strong retro aesthetic
 
 ### When to Use
 
-✅ **Use repetition when**:
-- Emphasizing a specific style or aesthetic
-- Ensuring AI captures a particular mood
-- Creating strong thematic consistency
-- The style is complex or nuanced
-- You need guaranteed style adherence
+✅ **Use repetition when:**
+- Emphasizing specific style/aesthetic
+- Ensuring AI captures particular mood
+- Complex or nuanced styles
+- Need guaranteed style adherence
 
-❌ **Don't overuse when**:
-- Simple, straightforward styles (over-emphasis can backfire)
-- You want variety and experimentation
-- The concept is already unambiguous
+❌ **Don't overuse when:**
+- Simple, straightforward styles
+- You want variety/experimentation
 
-### Repetition Strategies
-
-**Strategy 1: Direct Repetition**
-```
-cyberpunk city, neon-lit cyberpunk aesthetic, cyberpunk atmosphere
-```
-
-**Strategy 2: Synonym Variation**
-```
-retro poster, vintage design, nostalgic 80s aesthetic
-```
-
-**Strategy 3: Conceptual Echoing**
-```
-moody atmosphere, noir lighting, dramatic shadows, mysterious ambiance
-```
-(All reinforce "dark/dramatic" mood)
-
-**Strategy 4: Medium + Technique + Style**
-```
-oil painting portrait, traditional oil technique, classical painting approach
-```
-
----
-
-### Optimal Repetition Count
+### Optimal Count
 
 - **2 times**: Minimum for effective reinforcement
-- **3 times**: Optimal for strong emphasis without over-doing
-- **4+ times**: Diminishing returns, may feel forced
-
-### Advanced Application
-
-**Layered Repetition** (combining strategies):
-```
-vintage 1920s portrait, Art Deco aesthetic, Gatsby-era glamour,
-sepia-toned photograph, antique photo finish, 1920s fashion,
-nostalgic elegance
-```
-
-**Analysis**:
-- "Vintage/antique/nostalgic" = Era reinforcement (3x)
-- "1920s" appears 2x directly
-- "Art Deco/Gatsby-era" = Style era echoes
-- Multiple layers reinforce the 1920s aesthetic powerfully
+- **3 times**: Optimal for strong emphasis
+- **4+ times**: Diminishing returns
 
 ---
 
@@ -286,177 +127,52 @@ nostalgic elegance
 
 ### Principle
 
-AI models add "helpful" or "typical" elements by default. **You must actively exclude unwanted elements** through negative prompting to maintain control and achieve clean, focused results.
+AI adds "helpful" or "typical" elements by default. **Actively exclude unwanted elements** to maintain control and achieve clean results.
 
-### Core Concept
+**V7 UPDATE**: Minimize negative prompting in V7 - prefer positive descriptions (see Technique 10).
 
-**What you don't specify, AI might add anyway.**
+### Usage
 
-Common AI assumptions:
-- Text/watermarks on designs
-- Borders/frames around images
-- Background elements in portraits
-- Mockups for product designs
-- "Helpful" embellishments
+**Two approaches:**
 
-**Negative exclusion prevents these assumptions.**
+1. **In-prompt negatives**: "no [element]"
+2. **Parameter negatives**: `--no [element,element]`
 
-### Usage Method
+**Best in V7**: Use positive descriptions instead when possible.
 
-**Two approaches**:
+### Example
 
-1. **In-prompt negatives**: Include "no [element]" in the prompt text
-   ```
-   clean design, no watermark, no border, no text
-   ```
-
-2. **Parameter-based negatives**: Use `--no` parameter
-   ```
-   [prompt] --no watermark,border,text
-   ```
-
-**Best Practice**: Use both for maximum effectiveness
-```
-clean poster design, no text, no watermark --no text,watermark,border
-```
-
-### Examples
-
-#### Example 1: Clean Design
-
-❌ **Bad** (assumes AI will understand "clean"):
-```
-modern poster design
-```
-**Problem**: AI may add text, borders, mockups, or ornamental elements
-
-✅ **Good** (explicit exclusions):
+❌ **V6 Approach** (excessive negatives):
 ```
 modern poster design, no text, no watermark, no border,
 no mockup --no text,watermark,border,mockup
 ```
-**Result**: Pure visual design without unwanted additions
 
----
-
-#### Example 2: Portrait Photography
-
-❌ **Bad**:
+✅ **V7 Approach** (positive description):
 ```
-professional portrait
-```
-**Problem**: May include hands (often problematic), busy background, props
-
-✅ **Good**:
-```
-professional portrait, clean background, no hands,
-no props --no hands,clutter,background-detail
-```
-**Result**: Focused portrait without distracting elements
-
----
-
-#### Example 3: Product Photography
-
-❌ **Bad**:
-```
-product shot of perfume bottle
-```
-**Problem**: May add text, labels, excessive decorations
-
-✅ **Good**:
-```
-product shot of perfume bottle, minimal composition,
-no text, no labels, no decorations --no text,labels,clutter
-```
-**Result**: Clean product focus
-
----
-
-### Common Elements to Exclude
-
-**For Design Work**:
-- `no text, no watermark, no border, no frame, no mockup`
-- `no logo, no typography, no labels`
-
-**For Photography**:
-- `no hands` (hands are often problematic in AI)
-- `no busy background, no clutter, no background detail`
-- `no props, no accessories` (if minimalism desired)
-
-**For Portraits**:
-- `no hands, no fingers`
-- `no background people, no crowds`
-- `no props, no objects`
-
-**For Product Shots**:
-- `no text, no labels, no branding`
-- `no shadows, no reflections` (if desired)
-- `no background, no context` (for isolated shots)
-
-**For Artistic Work**:
-- `no frame, no border, no mat`
-- `no signature, no artist mark`
-- `no text overlay`
-
----
-
-### When to Use
-
-✅ **Always use negative exclusion when**:
-- Creating clean, minimal designs
-- Product photography
-- Poster/graphic design work
-- You need precise control
-- Previous generations included unwanted elements
-
-❌ **Don't use when**:
-- Those elements are actually desired
-- Creating busy, maximalist compositions
-- The AI naturally excludes them
-
-### Effective Negative Patterns
-
-**Minimalist Photography**:
-```
-[subject], clean composition, no clutter, no background detail,
-no props --no clutter,detail,complexity
+clean pure visual design, image-only composition,
+minimalist poster aesthetic
+--v 7
 ```
 
-**Product Design**:
-```
-[product], no text, no labels, no watermark, no mockup,
-pure product focus --no text,labels,watermark,mockup
-```
+### When to Use in V7
 
-**Portrait Work**:
-```
-[portrait description], no hands, no props, clean background
---no hands,props,background-clutter
-```
+✅ **Still use negatives for:**
+- Specific technical exclusions
+- Persistent problematic elements (e.g., `no hands` if hands keep appearing incorrectly)
 
-**Graphic Design**:
-```
-[design description], no text, no border, no frame, no mockup
---no text,border,frame,mockup
-```
+✅ **Prefer positive descriptions for:**
+- General cleanliness ("clean design" not "no clutter")
+- Aesthetic qualities ("pure visual" not "no text")
+- Compositional goals ("image-only" not "no watermark")
 
----
+### Common Exclusions (V6 style - minimize in V7)
 
-### Advanced Application
+- `no text, no watermark, no border`
+- `no hands` (when hands are problematic)
+- `no background clutter`
 
-**Combining with positive terms**:
-```
-clean modern poster, minimalist composition, pure visual design,
-no text, no watermark, no border, no decorative elements
---no text,watermark,border,decoration
-```
-
-**Exclusion hierarchy** (exclude broad then specific):
-```
-portrait, no background detail, no props, no hands, no jewelry,
-no accessories --no background-detail,props,hands,jewelry
-```
+**V7 Best Practice**: Describe what you DO want, not what you don't.
 
 ---
 
@@ -464,227 +180,49 @@ no accessories --no background-detail,props,hands,jewelry
 
 ### Principle
 
-**The medium determines overall texture, rendering style, and visual approach.** Defining the creation medium first establishes the framework within which all other descriptions operate.
+**Medium determines overall texture, rendering style, and visual approach.** Define the creation medium first to establish the framework for all other descriptions.
 
-### Core Concept
+### Usage
 
-**Medium = Foundation**
+Start prompts with the medium:
 
-Think of it like choosing your canvas:
+```
+[Medium] [subject description], [details...]
+```
+
+### Example
+
+```
+oil painting portrait, 1 elderly woman with weathered features,
+warm earth tones with burgundy accents, chiaroscuro lighting,
+Renaissance technique, impasto texture, visible brushstrokes
+--ar 4:5 --stylize 100 --v 7
+```
+
+**Why medium first:**
+- "Oil painting" → Sets texture foundation
+- All subsequent descriptions interpreted within this medium
+- Creates cohesive artistic approach
+
+**Compare different mediums:**
 - Oil painting → Rich, textured, layered
 - Photography → Realistic, lens-based, lighting-focused
 - 3D render → Clean, perfect, digital precision
 - Watercolor → Soft, flowing, transparent
-- Ink sketch → Linear, expressive, gestural
-
-**All subsequent descriptions are interpreted through this medium.**
-
-### Usage Method
-
-**Start your prompt with the medium**:
-```
-[Medium] [subject description], [details...]
-
-Examples:
-- oil painting portrait of...
-- 35mm film photography of...
-- 3D render of...
-- ink sketch of...
-```
-
-### Examples
-
-#### Example 1: Portrait Comparison
-
-❌ **Bad** (medium undefined):
-```
-portrait of elderly woman, dramatic lighting
-```
-**Problem**: Could be photo, painting, 3D, digital art - ambiguous
-
-✅ **Good** (medium defined):
-```
-oil painting portrait of elderly woman, dramatic lighting,
-impasto texture, visible brushstrokes
-```
-**Result**: Clear oil painting aesthetic with appropriate texture
-
-**Alternative mediums**:
-```
-35mm film photography portrait of elderly woman, dramatic lighting
-→ Photographic, realistic, film grain
-
-digital illustration portrait of elderly woman, dramatic lighting
-→ Digital art aesthetic, stylized
-
-charcoal sketch portrait of elderly woman, dramatic lighting
-→ Sketchy, expressive, monochrome
-```
-
----
-
-#### Example 2: Landscape
-
-❌ **Bad**:
-```
-mountain landscape, beautiful scenery
-```
-
-✅ **Good options**:
-
-**Watercolor**:
-```
-watercolor landscape painting, mountain vista, soft washes,
-flowing pigment, paper texture
-```
-
-**Photography**:
-```
-landscape photography, mountain range, 35mm lens,
-golden hour lighting, natural colors
-```
-
-**3D Render**:
-```
-3D rendered landscape, mountain environment, clean geometry,
-smooth surfaces, digital precision
-```
-
-**Each medium produces completely different results.**
-
----
-
-#### Example 3: Product Visualization
-
-**Photography medium**:
-```
-commercial product photography, sleek smartphone,
-studio lighting, reflective surface
-```
-
-**3D Render medium**:
-```
-3D product render, sleek smartphone, perfect geometry,
-ray-traced reflections, digital precision
-```
-
-**Illustration medium**:
-```
-technical illustration, sleek smartphone, line work,
-exploded view, diagram style
-```
-
----
 
 ### Common Medium Categories
 
-**Photography Mediums**:
-- `35mm film photography`
-- `medium format photography`
-- `digital photography`
-- `studio photography`
-- `street photography`
-- `documentary photography`
-
-**Painting Mediums**:
-- `oil painting`
-- `watercolor painting`
-- `acrylic painting`
-- `gouache painting`
-- `ink painting`
-
-**Drawing Mediums**:
-- `pencil sketch`
-- `charcoal drawing`
-- `ink sketch`
-- `pen and ink`
-- `graphite drawing`
-
-**Digital Mediums**:
-- `digital illustration`
-- `3D render`
-- `digital painting`
-- `vector art`
-- `pixel art`
-- `matte painting`
-
-**Print/Graphic Mediums**:
-- `screen print`
-- `linocut print`
-- `woodblock print`
-- `lithograph`
-- `etching`
-
-**Mixed/Specialty**:
-- `collage`
-- `mixed media`
-- `photomontage`
-- `sculptural photography`
-
----
+**Photography**: `35mm film photography`, `cinematic photography`, `documentary photography`
+**Painting**: `oil painting`, `watercolor painting`, `acrylic painting`
+**Digital**: `3D render`, `digital illustration`, `matte painting`
+**Print**: `screen print`, `lithograph`, `woodblock print`
 
 ### When to Use
 
-✅ **Always define medium when**:
-- Starting a new prompt
-- Medium significantly impacts the result
-- You have a specific visual approach in mind
-- Creating anything beyond simple concepts
-
-❌ **Medium may be optional when**:
-- Creating abstract concepts where medium is irrelevant
-- The prompt is extremely simple
-- You want the AI to choose the medium
-
-### Medium Impact Examples
-
-**Same subject, different mediums**:
-
-**Subject**: "Dragon in mountain landscape"
-
-```
-oil painting of dragon in mountain landscape
-→ Painterly, textured, classical fantasy art feel
-
-3D render of dragon in mountain landscape
-→ Digital, clean, modern CG aesthetic
-
-ink sketch of dragon in mountain landscape
-→ Expressive, gestural, traditional illustration
-
-matte painting of dragon in mountain landscape
-→ Cinematic, detailed, concept art style
-
-watercolor painting of dragon in mountain landscape
-→ Soft, flowing, delicate artistic approach
-```
-
-**Each produces fundamentally different results.**
-
----
-
-### Advanced Application
-
-**Medium + Technique**:
-```
-oil painting portrait, impasto technique, palette knife work,
-thick paint application, visible brushstrokes
-```
-(Defines both medium and specific technique within that medium)
-
-**Medium + Era/Movement**:
-```
-oil painting portrait, Renaissance technique, chiaroscuro lighting,
-classical composition, Old Master approach
-```
-(Defines medium and historical style)
-
-**Hybrid Medium**:
-```
-mixed media collage, photography elements with painted texture,
-layered paper, analog and digital combination
-```
-(Defines complex medium approach)
+✅ **Always define medium for:**
+- Starting new prompts
+- Artistic/stylized work
+- When medium impacts result
 
 ---
 
@@ -692,217 +230,54 @@ layered paper, analog and digital combination
 
 ### Principle
 
-**Strict color limitation = Style purity and cohesion.**
+**Strict color limitation = Style purity and cohesion.** Vague terms like "colorful" give AI too much freedom. **Specify exact colors** to maintain visual consistency.
 
-Vague color terms like "colorful" or "vibrant" give the AI too much freedom. **Specifying exact colors maintains visual consistency and prevents random color additions.**
+### Usage
 
-### Core Concept
-
-**Color Formula**:
+**Color Formula:**
 ```
 [Main color/palette] with accents of [accent color 1] and [accent color 2]
 ```
 
-This structure:
-1. Establishes dominant color scheme
-2. Defines supporting colors
-3. Limits AI's color choices
-4. Creates cohesive palette
+### Example
 
-### Usage Method
-
-**Structure**:
-1. Identify 1-2 dominant colors
-2. Choose 1-2 accent colors
-3. Use specific color names (not vague terms)
-4. Apply the formula
-
-### Examples
-
-#### Example 1: Minimalist Design
-
-❌ **Bad** (vague):
 ```
-minimalist poster, nice colors
-```
-**Problem**: "Nice colors" is meaningless to AI - could be anything
-
-✅ **Good** (specific):
-```
-minimalist poster, black and white base with accents of coral red
-```
-**Result**: Clear, limited palette creates sophisticated look
-
----
-
-#### Example 2: Nature Scene
-
-❌ **Bad**:
-```
-forest landscape, colorful
-```
-**Problem**: "Colorful" → AI adds random colors, loses cohesion
-
-✅ **Good**:
-```
-forest landscape, rich green tones with accents of golden sunlight
-and rust-colored leaves
-```
-**Result**: Cohesive natural palette
-
----
-
-#### Example 3: Cyberpunk Scene
-
-❌ **Bad**:
-```
-cyberpunk city, neon lights
-```
-**Problem**: "Neon lights" → AI might use all neon colors chaotically
-
-✅ **Good**:
-```
-cyberpunk cityscape, electric blue and hot pink neon,
-dark cyan shadows, minimal color palette
-```
-**Result**: Specific iconic cyberpunk colors, controlled palette
-
----
-
-### Color Naming Strategies
-
-**Use Specific Color Names**:
-
-❌ **Avoid**:
-- colorful, vibrant, nice colors, pretty palette
-- blue (which blue?), red (which red?), green (which green?)
-
-✅ **Use Specific Names**:
-- electric blue, navy blue, powder blue, cobalt blue
-- crimson red, rust red, burgundy, scarlet
-- sage green, forest green, mint green, olive green
-- hot pink, dusty rose, magenta, blush pink
-
-**Color Families to Specify**:
-```
-Blues: navy, cobalt, electric blue, powder blue, teal, cyan
-Reds: crimson, burgundy, rust, scarlet, coral, vermillion
-Greens: sage, forest, olive, mint, emerald, lime
-Yellows: golden, mustard, lemon, ochre, amber
-Neutrals: warm gray, cool gray, charcoal, taupe, ivory
+minimalist poster, black and white base with accents of coral red,
+clean geometric composition, modern design aesthetic
+--ar 2:3 --stylize 70 --v 7
 ```
 
----
+**Why it works:**
+- "Black and white base" → Establishes dominant palette
+- "accents of coral red" → Defines limited supporting color
+- Prevents AI from adding random colors
 
-### Color Palette Patterns
+### Color Specificity
 
-#### Pattern 1: Monochromatic
-```
-monochromatic blue palette, ranging from navy to powder blue,
-tonal variation, cohesive color scheme
-```
+❌ **Avoid vague terms:**
+- "colorful", "nice colors", "vibrant"
 
-#### Pattern 2: Complementary
-```
-deep orange base with accents of teal blue,
-complementary color scheme, high contrast
-```
+✅ **Use specific names:**
+- "electric blue and hot pink neon"
+- "warm sepia tones with burgundy accents"
+- "monochromatic navy to powder blue"
 
-#### Pattern 3: Analogous
-```
-warm autumn palette, golden yellow, burnt orange, and rust red,
-harmonious color flow
-```
+### Common Patterns
 
-#### Pattern 4: Limited Palette
+**Monochromatic:**
 ```
-black ink with accents of light blue and green,
-minimal color palette, restrained color use
+monochromatic blue palette, navy to powder blue tonal variation
 ```
 
-#### Pattern 5: Duotone
+**Complementary:**
 ```
-duotone effect, hot pink and electric blue only,
-two-color palette, graphic color treatment
-```
-
----
-
-### When to Use
-
-✅ **Use color control when**:
-- Creating cohesive designs
-- Establishing brand identity
-- Minimalist or sophisticated aesthetics
-- You need color consistency
-- Previous generations had color issues
-
-❌ **Less critical when**:
-- Creating intentionally chaotic/maximalist work
-- Realistic photography (natural colors)
-- You want AI to surprise you with color choices
-
-### Common Color Scenarios
-
-**Minimalist/Modern**:
-```
-[subject], monochromatic gray palette with single red accent
-[subject], black and white with metallic gold highlights
-[subject], muted earth tones, beige and warm gray
+deep orange base with accents of teal blue, high contrast
 ```
 
-**Vintage/Retro**:
+**Limited Palette:**
 ```
-[subject], warm sepia tones, aged photograph palette
-[subject], vintage 70s colors, burnt orange and avocado green
-[subject], faded pastel colors, nostalgic color treatment
+black ink with accents of light blue and green, minimal color
 ```
-
-**Bold/Graphic**:
-```
-[subject], bold primary colors, red yellow and blue
-[subject], high contrast, pure black and vibrant cyan
-[subject], neon palette, hot pink and electric green
-```
-
-**Natural/Organic**:
-```
-[subject], earthy palette, warm browns and sage green
-[subject], ocean colors, deep teal and seafoam green
-[subject], forest tones, moss green and rich browns
-```
-
-**Moody/Atmospheric**:
-```
-[subject], cool blue-gray tones, muted palette
-[subject], warm amber lighting, golden and rust tones
-[subject], midnight blue with silver accents
-```
-
----
-
-### Advanced Application
-
-**Color + Mood Connection**:
-```
-melancholic portrait, desaturated blue-gray tones,
-cool palette enhancing emotional distance
-```
-(Color reinforces emotional intent)
-
-**Color + Light Integration**:
-```
-sunset scene, warm golden hour palette, orange and pink sky,
-warm ambient light matching color scheme
-```
-(Color and lighting work together)
-
-**Color + Medium Synergy**:
-```
-watercolor landscape, transparent blue washes,
-soft color bleeds, muted aquarelle palette
-```
-(Color description matches medium characteristics)
 
 ---
 
@@ -910,316 +285,51 @@ soft color bleeds, muted aquarelle palette
 
 ### Principle
 
-**Professional terminology = Precise control; vague adjectives = ambiguous interpretation.**
+**Professional terminology = Precise control.** Domain-specific technical terms give AI exact instructions instead of generic descriptions with ambiguous interpretation.
 
-Using domain-specific technical terms from photography, art, and design gives the AI exact instructions instead of generic descriptions that could be interpreted many ways.
+### Usage
 
-### Core Concept
+Use terminology from:
+- Photography (camera, lens, lighting)
+- Art (painting techniques, movements)
+- Design (composition, layout principles)
 
-**Replace vague adjectives with precise technical terms.**
+### Example
 
-Vague terms like "nice," "good," "beautiful," "dramatic" are interpreted differently by everyone (including AI). Professional terminology has specific, agreed-upon meanings in each field.
-
-### Usage Method
-
-**Learn terminology from three main domains**:
-1. Photography (camera, lens, lighting techniques)
-2. Art (painting techniques, art movements, style terms)
-3. Design (composition, layout, graphic principles)
-
-**Replace generic descriptions with specific technical terms.**
-
----
-
-## Photography Domain
-
-### Camera & Lens Terms
-
-**Focal Length**:
-```
-❌ Bad: blurry background
-✅ Good: 85mm lens, shallow depth of field, f/1.8 aperture
-```
-
-**Common Focal Lengths**:
-- `14-24mm`: Ultra-wide, expansive, distortion
-- `35mm`: Standard wide, documentary feel
-- `50mm`: Normal perspective, natural view
-- `85mm`: Portrait lens, flattering compression
-- `200mm`: Telephoto, compressed perspective
-
-**Aperture Terms**:
-```
-❌ Bad: everything sharp
-✅ Good: f/16 aperture, deep depth of field, landscape photography
-```
-
-**Aperture Values**:
-- `f/1.4 - f/2.8`: Shallow DOF, subject isolation, bokeh
-- `f/4 - f/5.6`: Moderate DOF, balanced sharpness
-- `f/8 - f/11`: Deep DOF, most sharp
-- `f/16 - f/22`: Everything in focus, landscape
-
----
-
-### Lighting Terms
-
-**Natural Light**:
-```
-❌ Bad: nice lighting, good light
-✅ Good: golden hour lighting, warm directional sunlight,
-        soft shadows, 30 minutes before sunset
-```
-
-**Professional Lighting Terms**:
-- `golden hour`: Warm, low-angle sun (first/last hour of daylight)
-- `blue hour`: Cool twilight period after sunset
-- `overcast daylight`: Soft, diffused, even lighting
-- `direct sunlight`: Harsh, high-contrast, strong shadows
-- `window light`: Soft directional natural light
-- `backlighting`: Light from behind subject
-- `rim lighting`: Edge highlighting from backlight
-- `side lighting`: Light from 90° angle, dimensional
-
-**Studio Lighting**:
-```
-❌ Bad: professional lighting
-✅ Good: three-point lighting setup, key light camera left,
-        fill light camera right, rim light behind
-```
-
-**Studio Terms**:
-- `key light`: Main light source, primary illumination
-- `fill light`: Secondary light, softens shadows
-- `rim light` / `back light`: Separates subject from background
-- `softbox lighting`: Soft, diffused, even light
-- `hard light`: Direct, creating strong shadows
-- `high-key lighting`: Bright, minimal shadows
-- `low-key lighting`: Dark, dramatic shadows
-
-**Artistic Lighting**:
-```
-❌ Bad: dramatic lighting
-✅ Good: chiaroscuro lighting, strong contrast between light and dark,
-        tenebrism technique, single light source
-```
-
-**Art Lighting Terms**:
-- `chiaroscuro`: Strong light-dark contrast (Italian, "light-dark")
-- `tenebrism`: Extreme chiaroscuro, dramatic shadows
-- `Rembrandt lighting`: Triangular light on shadowed cheek
-- `butterfly lighting`: Light from above, shadow under nose
-
----
-
-### Photography Style Terms
-
-**Shot Types**:
-```
-❌ Bad: close picture
-✅ Good: extreme close-up, macro photography, 1:1 magnification
-```
-
-**Frame Types**:
-- `extreme close-up`: Face details, intimate
-- `close-up`: Head and shoulders
-- `medium shot`: Waist up
-- `full shot`: Entire subject
-- `wide shot`: Subject in environment
-- `establishing shot`: Environmental context
-
-**Angles**:
-- `low angle`: Camera below subject, looking up
-- `high angle`: Camera above, looking down
-- `eye level`: Natural perspective
-- `bird's eye view`: Directly overhead
-- `Dutch angle`: Tilted, dynamic tension
-
----
-
-## Art Domain
-
-### Painting Techniques
-
-**Brush Techniques**:
-```
-❌ Bad: thick paint
-✅ Good: impasto technique, palette knife application,
-        thick paint texture, visible brushstrokes
-```
-
-**Technique Terms**:
-- `impasto`: Thick paint application, textured surface
-- `glazing`: Thin transparent layers
-- `scumbling`: Dry brush over dry paint
-- `wet-on-wet`: Painting into wet paint
-- `alla prima`: Completing in one session
-- `pointillism`: Dots of color
-- `crosshatching`: Layered parallel lines
-
-**Painting Styles**:
-```
-❌ Bad: old-fashioned painting
-✅ Good: Renaissance technique, sfumato shading,
-        classical composition, Old Master approach
-```
-
-**Art Movement Terms**:
-- `Renaissance`: Classical, balanced, realistic proportions
-- `Baroque`: Dramatic, ornate, emotional
-- `Impressionist`: Loose brushwork, light focus, color emphasis
-- `Art Nouveau`: Flowing lines, organic forms, decorative
-- `Art Deco`: Geometric, glamorous, symmetrical
-- `Abstract Expressionist`: Gestural, emotional, non-representational
-
----
-
-### Color & Composition Terms
-
-**Color Theory**:
-```
-❌ Bad: colors work well together
-✅ Good: complementary color scheme, orange and teal,
-        high color contrast, balanced palette
-```
-
-**Color Terms**:
-- `complementary colors`: Opposite on color wheel (red/green)
-- `analogous colors`: Adjacent on wheel (blue/green/cyan)
-- `triadic colors`: Three equally spaced (red/yellow/blue)
-- `monochromatic`: Single hue variations
-- `split-complementary`: Base + two adjacent to complement
-- `warm palette`: Reds, oranges, yellows
-- `cool palette`: Blues, greens, purples
-
-**Composition Terms**:
-```
-❌ Bad: well-composed, balanced
-✅ Good: rule of thirds composition, subject at intersection point,
-        golden ratio spiral, balanced negative space
-```
-
-**Layout Terms**:
-- `rule of thirds`: Grid dividing frame into 9 sections
-- `golden ratio`: 1.618:1 natural proportion
-- `golden spiral`: Logarithmic spiral based on golden ratio
-- `symmetrical composition`: Mirrored balance
-- `asymmetrical balance`: Visual weight distributed unevenly
-- `negative space`: Empty space around subject
-- `leading lines`: Lines directing eye to subject
-- `frame within frame`: Using elements to frame subject
-- `diagonal composition`: Dynamic angle, movement
-
----
-
-## Design Domain
-
-**Typography Terms** (when applicable):
-```
-❌ Bad: text looks good
-✅ Good: sans-serif typography, geometric letterforms,
-        tight kerning, modern type treatment
-```
-
-**Layout Terms**:
-```
-❌ Bad: nicely arranged
-✅ Good: grid system layout, modular spacing,
-        hierarchical structure, visual rhythm
-```
-
-**Graphic Style Terms**:
-- `minimalist design`: Reduced elements, essential only
-- `maximalist design`: Rich, layered, abundant
-- `brutalist design`: Raw, stark, unrefined
-- `Swiss design`: Grid-based, sans-serif, objective
-- `bauhaus`: Geometric, functional, no ornament
-
----
-
-### Comprehensive Examples
-
-#### Example 1: Portrait Photography
-
-❌ **Bad** (all vague terms):
-```
-beautiful portrait, nice lighting, good background
-```
-
-✅ **Good** (professional terminology):
 ```
 portrait photography, 85mm lens, f/2.0 aperture,
 shallow depth of field, Rembrandt lighting setup,
-soft window light camera left, subtle fill light camera right,
-bokeh background, natural skin tones, eye-level perspective
+soft window light camera left, bokeh background,
+natural skin tones, eye-level perspective
+--ar 2:3 --stylize 50 --v 7
 ```
 
----
+**Professional terms used:**
+- "85mm lens" → Specific focal length (not "blurry background")
+- "f/2.0 aperture" → Exact aperture (not "nice blur")
+- "Rembrandt lighting" → Specific lighting pattern (not "dramatic light")
+- "shallow depth of field" → Technical DOF term
 
-#### Example 2: Landscape Photography
+### Key Term Categories
 
-❌ **Bad**:
-```
-pretty landscape, good colors, nice light
-```
+**Photography:**
+- Focal length: `35mm`, `85mm`, `200mm`
+- Aperture: `f/1.4`, `f/2.8`, `f/16`
+- Lighting: `golden hour`, `Rembrandt lighting`, `three-point lighting`
 
-✅ **Good**:
-```
-landscape photography, 24mm wide-angle lens, f/11 aperture,
-deep depth of field, golden hour lighting, warm directional sunlight,
-rule of thirds composition, leading lines to horizon,
-high dynamic range, rich color saturation
-```
+**Art:**
+- Techniques: `impasto`, `glazing`, `chiaroscuro`
+- Movements: `Renaissance`, `Baroque`, `Art Deco`
 
----
-
-#### Example 3: Oil Painting
-
-❌ **Bad**:
-```
-painting with thick paint, dramatic lighting
-```
-
-✅ **Good**:
-```
-oil painting portrait, impasto technique, palette knife application,
-visible brushstrokes, chiaroscuro lighting, tenebrism approach,
-rich earth tone palette, Renaissance composition,
-classical proportions, glazing in shadows
-```
-
----
+**Design:**
+- Composition: `rule of thirds`, `golden ratio`, `symmetrical composition`
 
 ### When to Use
 
-✅ **Always use professional terminology when**:
-- You know the specific technique/term
+✅ **Use professional terms when:**
+- You know the specific technique
 - Creating photography-style work
-- Replicating art styles or movements
 - Need precise technical control
-- Want sophisticated, professional results
-
-❌ **Use simpler terms when**:
-- Creating casual, spontaneous work
-- The technical detail isn't relevant
-- You genuinely don't know the right term (don't fake it)
-
-### Building Your Terminology Vocabulary
-
-**Photography Resources**:
-- Learn camera settings (aperture, shutter, ISO)
-- Study lighting setups (3-point, Rembrandt, butterfly)
-- Understand lens characteristics (wide, normal, telephoto)
-
-**Art Resources**:
-- Study art movements (Renaissance, Baroque, Impressionism)
-- Learn painting techniques (impasto, glazing, scumbling)
-- Understand composition rules (thirds, golden ratio)
-
-**Design Resources**:
-- Learn layout principles (grid, hierarchy, balance)
-- Study design movements (Bauhaus, Swiss, Brutalist)
-- Understand color theory (complementary, analogous)
 
 ---
 
@@ -1227,180 +337,56 @@ classical proportions, glazing in shadows
 
 ### Principle
 
-**Clear hierarchy = AI understands priority.**
+**Clear hierarchy = AI understands priority.** Describe elements in order of importance—from subject to details, core to periphery—helps AI prioritize and build logically.
 
-Describing elements in order of importance—from subject to details, from core to periphery—helps the AI prioritize what matters most and build the image in logical layers.
+### Usage
 
-### Core Concept
-
-**Hierarchical Order**:
-1. Subject (what is it?)
-2. Primary details (key characteristics)
-3. Secondary details (supporting elements)
-4. Atmosphere/mood (feeling)
-5. Technical aspects (quality, finish)
-
-**Each layer builds on the previous, creating depth and complexity.**
-
-### Usage Method
-
-**Structure your prompt as progressive layers**:
+**Structure prompts as progressive layers:**
 ```
-[Subject layer] → [Detail layer 1] → [Detail layer 2] →
-[Atmosphere layer] → [Technical layer]
+[Subject] → [Primary details] → [Secondary details] → [Atmosphere] → [Technical]
 ```
 
-### Examples
+### Example
 
-#### Example 1: Portrait
-
-❌ **Bad** (flat, no hierarchy):
 ```
-face with beanie and cigarette, good lighting
-```
-**Problem**: No clear priority, AI doesn't know what's most important
-
-✅ **Good** (hierarchical layers):
-```
-Subject layer: 1 close-up face centered
-Detail layer 1: teal ribbed knit beanie pulled down to cover eyes
-Detail layer 2: cigarette clenched between lips with faint smoke
-Atmosphere layer: moody editorial lighting, subtle vignette
-Technical layer: high-contrast, print-ready look
+1 close-up face centered (subject layer),
+teal ribbed knit beanie covering eyes (detail layer 1),
+cigarette with faint smoke wisp (detail layer 2),
+moody editorial lighting, subtle vignette (atmosphere),
+high-contrast, print-ready look (technical)
+--ar 4:5 --v 7
 ```
 
-**How AI processes this**:
+**How AI processes:**
 1. Creates centered close-up face (foundation)
-2. Adds teal beanie covering eyes (primary detail)
+2. Adds beanie covering eyes (primary detail)
 3. Adds cigarette with smoke (secondary detail)
-4. Applies moody lighting and vignette (atmosphere)
-5. Applies high contrast finish (technical quality)
+4. Applies moody lighting (atmosphere)
+5. Applies high contrast (technical quality)
 
----
+### Common Patterns
 
-#### Example 2: Product Photography
-
-❌ **Bad**:
+**Portrait Hierarchy:**
 ```
-perfume bottle with flowers, nice background
+Subject → Face/expression → Hair/clothing → Props → Lighting → Background → Technical
 ```
 
-✅ **Good**:
+**Scene Hierarchy:**
 ```
-Subject: 1 luxury perfume bottle centered
-Primary detail: geometric glass design with golden cap
-Secondary detail: 1 white rose beside bottle
-Background: soft gradient background, cream to white
-Lighting: soft key light from left, subtle reflections
-Technical: ultra-sharp focus, 4K detail, commercial quality
+Main subject → Primary elements → Secondary elements → Environment → Atmosphere → Technical
 ```
 
----
-
-#### Example 3: Landscape
-
-❌ **Bad**:
+**Product Hierarchy:**
 ```
-mountain landscape with trees and lake
+Product → Key features → Supporting elements → Background → Lighting → Technical
 ```
-
-✅ **Good**:
-```
-Foreground: 1 lone pine tree on rocky outcrop
-Midground: alpine lake with mirror reflection
-Background: mountain range with snow-capped peaks
-Atmosphere: early morning mist, ethereal quality
-Lighting: soft pre-sunrise light, cool blue hour tones
-Technical: deep depth of field, tack sharp, f/16 aperture
-```
-
----
-
-### Layering Patterns
-
-#### Pattern 1: Portrait Hierarchy
-```
-Subject → Face/expression → Hair/clothing →
-Props/accessories → Lighting → Background → Technical
-```
-
-**Example**:
-```
-1 young woman, serene expression, flowing white hair,
-elegant white dress, 1 red rose in hand,
-soft window light, minimal gray background,
-shallow depth of field, high-resolution detail
-```
-
----
-
-#### Pattern 2: Scene Hierarchy
-```
-Main subject → Primary elements → Secondary elements →
-Environment → Atmosphere → Lighting → Technical
-```
-
-**Example**:
-```
-1 vintage bicycle, worn leather seat and handlebar grips,
-woven basket with flowers, cobblestone street setting,
-nostalgic European atmosphere, warm afternoon light,
-35mm film photography, slight grain
-```
-
----
-
-#### Pattern 3: Product Hierarchy
-```
-Product → Key features → Supporting elements →
-Background → Lighting → Surface/texture → Technical
-```
-
-**Example**:
-```
-1 ceramic coffee cup, minimalist white design,
-thin gold rim detail, 1 small plant beside cup,
-clean white background, soft overhead lighting,
-matte surface finish, ultra-detailed, 4K quality
-```
-
----
 
 ### When to Use
 
-✅ **Use hierarchical description when**:
-- Creating complex scenes with multiple elements
-- You need clear priorities
-- Building detailed, layered compositions
-- Combining many elements cohesively
-- Professional or detailed work
-
-❌ **Less critical when**:
-- Creating very simple subjects
-- Single-element compositions
-- Abstract or minimalist work
-
-### Advanced Hierarchy Techniques
-
-**Embedded Sub-Hierarchies**:
-```
-Subject: 1 elderly craftsman
-  Face details: weathered features, focused expression
-  Hand details: calloused hands, holding tool
-  Clothing: leather apron, rolled-up sleeves
-Props: workbench with scattered tools
-  Tool details: vintage hammer, worn wood plane
-Environment: rustic workshop, soft dust particles in air
-Lighting: single window light from left, dramatic shadows
-```
-
-**Spatial Hierarchy** (near to far):
-```
-Foreground: detailed close-up element
-Midground: main subject with clear details
-Background: softer, supporting environment
-Atmosphere: overall mood tying layers together
-```
+✅ **Use hierarchical description for:**
+- Complex scenes with multiple elements
+- Clear priorities needed
+- Detailed, layered compositions
 
 ---
 
@@ -1408,232 +394,182 @@ Atmosphere: overall mood tying layers together
 
 ### Principle
 
-**Tension = Balanced coexistence of opposing elements, creating complexity and depth.**
+**Tension = Balanced coexistence of opposing elements, creating complexity and depth.** Describing interplay of contrasting qualities creates sophisticated, nuanced results that avoid being one-dimensional.
 
-Describing the interplay of contrasting qualities (experimental yet grounded, clear yet provocative) creates sophisticated, nuanced results that avoid being one-dimensional.
+### Usage
 
-### Core Concept
+Combine contrasting qualities using "but," "yet," or "while":
 
-**Simple concepts are one-dimensional:**
-- "experimental design" → could be chaotic or weird
-- "clear message" → could be boring or generic
-
-**Tension creates depth:**
-- "experimental but grounded" → innovative yet accessible
-- "clear and provocative yet close and human" → contradictions create interest
-
-**Opposing elements balance each other, creating sophisticated complexity.**
-
-### Usage Method
-
-**Combine contrasting qualities using "but," "yet," or "while":**
 ```
 [Quality A] but [Opposite Quality B]
 [Quality A] yet [Opposite Quality B]
-[Quality A] while [Opposite Quality B]
 ```
 
-### Examples
+### Example (Conceptual Storytelling)
 
-#### Example 1: Design Aesthetic
-
-❌ **Bad** (one-dimensional):
 ```
-experimental design
-```
-**Problem**: Could be chaotically weird or inaccessibly avant-garde
-
-✅ **Good** (tension-balanced):
-```
-experimental but grounded design, innovative forms yet familiar structure
-```
-**Result**: Pushes boundaries while remaining accessible
-
----
-
-#### Example 2: Portrait Mood
-
-❌ **Bad**:
-```
-emotional portrait
+conceptual visual storytelling, clear and provocative yet close and human tone,
+experimental but grounded design, narrative sequential composition,
+realistic textures with conceptual abstraction, cinematic photography,
+35mm lens look, f/2.8 aperture, soft natural light mixed with technical accents,
+visual tension that invites questioning
+--ar 16:9 --v 7
 ```
 
-✅ **Good**:
-```
-vulnerable yet strong expression, soft features with intense gaze,
-delicate but powerful presence
-```
-**Result**: Complex emotional depth
+**Tension pairs used:**
+- "clear and provocative YET close and human"
+- "experimental BUT grounded"
+- "realistic textures WITH conceptual abstraction"
+- Creates sophisticated depth through contradictions
 
----
+### Common Tension Pairs
 
-#### Example 3: Visual Style
-
-❌ **Bad**:
-```
-realistic painting
-```
-
-✅ **Good**:
-```
-realistic textures with conceptual abstraction,
-photographic detail yet artistic interpretation
-```
-**Result**: Sophisticated blend of realism and artistry
-
----
-
-### Tension Pairs (Opposites that Balance)
-
-**Style Tensions**:
+**Style Tensions:**
 - Experimental ↔ Grounded
 - Abstract ↔ Representational
 - Minimal ↔ Rich
 - Modern ↔ Timeless
-- Bold ↔ Subtle
-- Chaotic ↔ Structured
 
-**Emotional Tensions**:
+**Emotional Tensions:**
 - Vulnerable ↔ Strong
 - Warm ↔ Distant
 - Intimate ↔ Universal
-- Joyful ↔ Melancholic
-- Calm ↔ Intense
 
-**Visual Tensions**:
+**Visual Tensions:**
 - Sharp ↔ Soft
 - Light ↔ Dark
-- Simple ↔ Complex
 - Organic ↔ Geometric
-- Rough ↔ Polished
-
-**Conceptual Tensions**:
-- Clear ↔ Mysterious
-- Familiar ↔ Strange
-- Controlled ↔ Spontaneous
-- Precise ↔ Loose
-- Rational ↔ Emotional
-
----
-
-### Tension Applications
-
-#### Application 1: Conceptual Work
-
-```
-abstract concept, clear message yet open to interpretation,
-structured chaos, rational foundation with emotional overtones
-```
-
-**Effect**: Intellectual yet accessible
-
----
-
-#### Application 2: Portrait Photography
-
-```
-editorial portrait, soft diffused lighting yet dramatic shadows,
-intimate composition with universal appeal,
-natural expression with carefully controlled styling
-```
-
-**Effect**: Professional yet genuine
-
----
-
-#### Application 3: Illustration Style
-
-```
-playful illustration, loose gestural lines yet precise composition,
-energetic but balanced, spontaneous feel with deliberate structure
-```
-
-**Effect**: Lively yet intentional
-
----
-
-#### Application 4: Product Design
-
-```
-minimalist product design, simple forms with rich material quality,
-understated yet luxurious, functional while beautiful
-```
-
-**Effect**: Sophisticated simplicity
-
----
 
 ### When to Use
 
-✅ **Use tension technique when**:
-- Creating sophisticated, nuanced work
+✅ **Use tension for:**
+- Sophisticated, nuanced work
 - Avoiding one-dimensional results
 - Adding depth and complexity
-- Professional or artistic projects
-- You want to avoid clichés
+- Professional/artistic projects
 
-❌ **Less useful when**:
-- Creating straightforward, simple subjects
-- Tension would confuse the concept
-- One-dimensional is actually desired
+---
 
-### Common Tension Patterns
+## 9. Prompt Weighting Technique **(NEW V7)**
 
-**Pattern 1: Style + Groundedness**
+### Principle
+
+**V7 supports prompt weighting with `::` syntax to prioritize elements.** Higher numbers = more emphasis, allowing fine control over complex scenes with multiple elements.
+
+### Usage
+
+**Syntax:**
 ```
-[bold style] but [grounded element]
-
-Examples:
-- experimental typography yet legible text
-- surreal imagery but recognizable forms
-- abstract composition yet balanced structure
+element1::2 element2:: element3::0.5
 ```
 
-**Pattern 2: Emotion + Control**
-```
-[emotional quality] yet [controlled aspect]
+- No number (or `::1`) = Default weight
+- `::2` = 2x emphasis
+- `::0.5` = 0.5x (de-emphasize)
+- `::0` = Exclude completely
 
-Examples:
-- passionate expression yet composed posture
-- raw emotion but refined execution
-- intimate feeling yet professional finish
+### Example
+
+```
+sunset::2 mountain landscape:: lake reflection::0.5 clouds::0.5,
+warm golden hour lighting, cinematic composition
+--ar 16:9 --v 7
 ```
 
-**Pattern 3: Visual + Conceptual**
-```
-[visual characteristic] with [contrasting depth]
+**Weighting analysis:**
+- `sunset::2` → 2x emphasis (primary focus)
+- `mountain landscape::` → Default weight (supporting element)
+- `lake reflection::0.5` → De-emphasized (subtle presence)
+- `clouds::0.5` → De-emphasized (background element)
 
-Examples:
-- simple visual language with complex meaning
-- ornate decoration yet minimalist philosophy
-- rough texture but refined concept
+### When to Use
+
+✅ **Use weighting for:**
+- Complex scenes with multiple elements
+- Clear priority needed among elements
+- Fine-tuning element balance
+- When some elements overpower others
+
+### Advanced Usage
+
+**Character prominence:**
+```
+main character::2 supporting character:: background crowd::0.3
+```
+
+**Atmosphere control:**
+```
+dramatic lighting::1.5 subject:: subtle background::0.5
 ```
 
 ---
 
-### Advanced Tension Techniques
+## 10. Positive-First Description Technique **(NEW V7)**
 
-**Multiple Tension Layers**:
-```
-portrait: vulnerable expression yet confident posture,
-soft lighting but strong shadows, intimate framing with universal theme,
-contemporary style yet timeless quality
-```
-(Multiple tensions create rich complexity)
+### Principle
 
-**Tension in Progression**:
-```
-starts minimal and controlled, builds to expressive chaos,
-resolves in balanced harmony
-```
-(Narrative tension through progression)
+**V7 responds better to positive descriptions than negatives.** Instead of describing what you DON'T want, describe what you DO want. This leverages V7's improved prompt following.
 
-**Cultural Tension**:
+### Usage
+
+Replace negative terms with positive descriptions:
+
+❌ **Old way (V6):**
 ```
-traditional Japanese aesthetics with contemporary minimalism,
-Eastern philosophy meets Western design, ancient wisdom in modern form
+no text, no watermark, no border, no mockup
 ```
-(Cross-cultural creative tension)
+
+✅ **New way (V7):**
+```
+clean pure visual design, image-only composition
+```
+
+### Example Transformations
+
+**Design work:**
+- ❌ `no text, no watermark` → ✅ `clean visual design, pure imagery`
+- ❌ `no clutter, no background detail` → ✅ `minimalist composition, simple backdrop`
+- ❌ `no mockup, no border` → ✅ `direct presentation, frameless design`
+
+**Photography:**
+- ❌ `no hands` → ✅ `portrait crop, shoulders up composition`
+- ❌ `no busy background` → ✅ `clean background, isolated subject`
+- ❌ `no props` → ✅ `pure subject focus, minimal scene`
+
+### Complete Example
+
+❌ **V6 Approach:**
+```
+modern poster design, no text, no watermark, no border,
+no clutter, no mockup --no text,watermark,border
+```
+
+✅ **V7 Approach:**
+```
+clean modern poster design, pure visual composition,
+image-only presentation, minimalist aesthetic,
+direct graphic approach
+--v 7
+```
+
+### When to Still Use Negatives
+
+✅ **Use `--no` for:**
+- Specific technical exclusions
+- Persistent unwanted elements (e.g., `--no hands` when hands consistently appear incorrectly)
+
+✅ **Use positive descriptions for:**
+- General aesthetic goals
+- Composition preferences
+- Style characteristics
+
+### V7 Advantage
+
+V7's improved prompt understanding means:
+- Simpler, more direct prompts work better
+- Positive descriptions are interpreted accurately
+- Less need for defensive negative prompting
+- More natural language processing
 
 ---
 
@@ -1641,81 +577,114 @@ Eastern philosophy meets Western design, ancient wisdom in modern form
 
 ### Using Multiple Techniques Together
 
-**Most prompts should combine 4-6 techniques for optimal results.**
+Most effective prompts combine 4-6 techniques.
 
-#### Integration Example 1: Portrait
+### Integration Example
 
-**Techniques applied**:
-1. Medium Definition: "oil painting portrait"
-2. Number Emphasis: "1 elderly woman"
-3. Color Control: "warm earth tones with burgundy accents"
-4. Professional Terminology: "chiaroscuro lighting, impasto texture"
-5. Hierarchical Description: Subject → Details → Atmosphere → Technical
-6. Tension: "weathered features yet dignified presence"
+**Techniques applied:**
+1. Medium Definition: "cinematic photography"
+2. Number Emphasis: "1 cyberpunk street scene"
+3. Repetition Reinforcement: "cyberpunk", "noir aesthetic", "Blade Runner" (style reinforcement)
+4. Color Control: "electric blue and hot pink neon"
+5. Professional Terminology: "35mm film grain", "high contrast lighting"
+6. Hierarchical Description: Subject → Details → Atmosphere → Technical
+7. Positive-First (V7): "atmospheric fog" instead of "no clear sky"
 
-**Complete Prompt**:
+**Complete Prompt:**
 ```
-oil painting portrait, 1 elderly woman with weathered features yet dignified presence,
-warm earth tones with accents of burgundy and olive green,
-chiaroscuro lighting from window, impasto texture, visible brushstrokes,
-contemplative expression, Renaissance technique, museum-quality detail,
-no modern elements --ar 4:5 --stylize 100
+cinematic photography, 1 cyberpunk street scene at night,
+neon-lit alleyways with electric blue and hot pink signs,
+wet reflective pavement, atmospheric fog, Blade Runner aesthetic,
+moody noir atmosphere, 35mm film grain, high contrast lighting
+--ar 16:9 --stylize 60 --v 7
 ```
-
----
-
-#### Integration Example 2: Product Photography
-
-**Techniques applied**:
-1. Medium Definition: "commercial product photography"
-2. Number Emphasis: "1 perfume bottle"
-3. Negative Exclusion: "no text, no labels, no background clutter"
-4. Professional Terminology: "soft key light, f/2.8 aperture"
-5. Hierarchical Description: Product → Details → Background → Lighting
-6. Color Control: "clear glass with golden liquid, cream background"
-
-**Complete Prompt**:
-```
-commercial product photography, 1 luxury perfume bottle centered,
-geometric glass design, golden liquid inside, minimal composition,
-cream gradient background, soft key light from left,
-f/2.8 aperture, shallow depth of field, ultra-sharp focus,
-no text, no labels, no clutter --ar 4:5 --stylize 30 --style raw
-```
-
----
 
 ### Technique Selection Guide
 
-**For Realistic Photography**:
-- ✅ Use: Medium Definition, Professional Terminology, Negative Exclusion
-- ⚠️ Use carefully: Repetition (can make it too stylized)
-- ❌ Skip: Heavy tension (keep it straightforward)
+**For Realistic Photography:**
+- ✅ Use: Medium Definition, Professional Terminology, Positive Descriptions (V7)
+- ⚠️ Use carefully: Repetition (can make too stylized)
 
-**For Artistic/Stylized Work**:
+**For Artistic/Stylized Work:**
 - ✅ Use: Medium Definition, Repetition Reinforcement, Color Control, Tension
 - ⚠️ Use carefully: Professional terminology (don't over-tech)
-- ❌ Skip: Excessive negative exclusion (allow artistic freedom)
 
-**For Design/Posters**:
-- ✅ Use: Color Control, Negative Exclusion, Hierarchical Description
+**For Design/Posters:**
+- ✅ Use: Color Control, Positive Descriptions (V7), Hierarchical Description
 - ⚠️ Use carefully: Number Emphasis (only for focal elements)
-- ❌ Skip: Heavy professional photography terms (unless photo-based)
+
+**For Complex Scenes (V7):**
+- ✅ Use: Prompt Weighting (::), Hierarchical Description, Positive Descriptions
+
+---
+
+## V7-Specific Best Practices
+
+### 1. Prefer Positive Descriptions
+
+V7 understands what you want better than what you don't want.
+
+**V6 required:**
+```
+design, no text, no watermark, no border
+```
+
+**V7 prefers:**
+```
+clean visual design, pure imagery
+```
+
+### 2. Use Prompt Weighting for Complex Scenes
+
+When multiple elements compete, use `::` weighting:
+
+```
+main subject::2 supporting elements:: background::0.5
+```
+
+### 3. Simpler Prompts Work Better
+
+V7's improved prompt following means concise prompts often work better:
+
+**V6 required:**
+```
+cinematic photography, moody lighting, 35mm lens, f/2.8 aperture,
+shallow depth of field, bokeh background, dramatic atmosphere,
+high contrast, film noir aesthetic
+```
+
+**V7 allows:**
+```
+cinematic noir portrait, 35mm f/2.8, atmospheric lighting
+--v 7
+```
+
+### 4. Leverage Draft Mode
+
+Use `--draft` for rapid iteration before final render:
+
+```
+1. Explore: [prompt] --draft (10x faster iterations)
+2. Refine: [refined prompt] --draft
+3. Final: [final prompt] --v 7 --q 2
+```
 
 ---
 
 ## Quick Reference Summary
 
-| Technique | Core Principle | When to Use | Key Syntax |
-|-----------|---------------|-------------|------------|
-| 1. Number Emphasis | "1" prevents multiplication | Focused subjects, minimalism | `1 [element]` |
-| 2. Repetition Reinforcement | Repetition = higher weight | Style emphasis | Repeat 2-3 times |
-| 3. Negative Exclusion | Actively exclude unwanted | Clean designs, precision | `no [element], --no` |
-| 4. Medium Definition | Medium = foundation | Always (unless abstract) | Start with medium |
-| 5. Color Control | Specific colors = cohesion | Color matters | `[color] with accents of [color]` |
-| 6. Professional Terminology | Precise terms = precise control | Technical/professional work | Use domain vocabulary |
-| 7. Hierarchical Description | Order = priority | Complex scenes | Subject → Details → Atmosphere |
-| 8. Tension Creation | Opposites = depth | Sophisticated work | `[quality] yet [opposite]` |
+| Technique | Core Principle | Key Syntax | V7 Notes |
+|-----------|---------------|------------|----------|
+| 1. Number Emphasis | "1" prevents multiplication | `1 [element]` | Unchanged |
+| 2. Repetition Reinforcement | Repetition = higher weight | Repeat 2-3 times | Unchanged |
+| 3. Negative Exclusion | Actively exclude unwanted | `no [element], --no` | Minimize in V7 |
+| 4. Medium Definition | Medium = foundation | Start with medium | Unchanged |
+| 5. Color Control | Specific colors = cohesion | `[color] with accents of` | Unchanged |
+| 6. Professional Terminology | Precise terms = precise control | Use domain vocabulary | Unchanged |
+| 7. Hierarchical Description | Order = priority | Subject → Details → Atmosphere | Unchanged |
+| 8. Tension Creation | Opposites = depth | `[quality] yet [opposite]` | Unchanged |
+| 9. Prompt Weighting | Priority control | `element::2` | NEW in V7 |
+| 10. Positive-First | Describe what you DO want | Positive descriptions | NEW in V7 |
 
 ---
 
@@ -1724,18 +693,19 @@ no text, no labels, no clutter --ar 4:5 --stylize 30 --style raw
 **Beginner**: Start with 2-3 techniques
 - Medium Definition (always)
 - Number Emphasis (for clear subjects)
-- Negative Exclusion (for clean results)
+- Positive Descriptions (V7 best practice)
 
 **Intermediate**: Add 3-4 more techniques
 - Color Control
 - Hierarchical Description
 - Repetition Reinforcement
 
-**Advanced**: Master all 8 techniques
+**Advanced**: Master all 10 techniques
 - Professional Terminology
 - Tension Creation
-- Seamless integration of all techniques
+- Prompt Weighting (V7)
+- Seamless integration
 
 ---
 
-Remember: These techniques are tools, not rules. Use them purposefully to achieve your specific vision, not as a checklist to blindly follow. Understanding why each technique works empowers you to apply them creatively and effectively.
+Remember: These techniques are tools, not rules. Use them purposefully to achieve your vision. V7's improved capabilities mean simpler, more direct prompts often work better—combine techniques strategically, not mechanically.
