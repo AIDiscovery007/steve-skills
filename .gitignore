@@ -23,3 +23,10 @@ generated-images/
 /imgs-reference/
 /nice_prompts/
 /package-lock.json
+
+# macOS
+.DS_Store
+
+# Skills output (generated reports)
+.claude/skills/gold-analyst/reports/
+.claude/skills/liquidity-report/output/
