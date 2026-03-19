@@ -61,6 +61,29 @@ python3 {skillDir}/scripts/fetch_data.py
 echo '<JSON数据>' | python3 {skillDir}/scripts/generate_report.py
 ```
 
+**后处理 — 必须添加 MK 引用：**
+
+调用脚本后，还必须完成以下两步：
+
+1. **读取宏观知识库**：立即读取 `references/macro-knowledge.md`，了解各 [MK-行号] 对应的具体内容。
+
+2. **嵌入 MK 引用**：将脚本输出的报告文本作为草稿，在以下位置自然嵌入至少 3 处 [MK-行号] 引用：
+   - SOFR 相关分析处 → 参考 [MK-53~54] 或其他 SOFR 相关条目
+   - USDJPY/carry trade 处 → 参考 [MK-17~19] 或 [MK-67]
+   - HYG/信用利差处 → 参考 [MK-73]
+   - ON RRP/净流动性处 → 参考 [MK-45]
+   - 综合判断处 → 参考 [MK-3]、[MK-5~6]（高估值+流动性偏紧组合）
+   - 黄金/TIPS 处 → 参考 [MK-33~37]（若涉及 CME 保证金）
+
+   引用格式：在分析句子末尾加上 `[MK-行号]`，例如：`短端资金偏紧将放大市场波动 [MK-5~6]`
+
+3. **添加引用来源节**：在报告末尾（在 `*数据来源：...*` 注释之前）添加：
+   ```markdown
+   ## 引用来源
+   - [MK-行号] 引用条目的完整原文
+   ```
+   从 macro-knowledge.md 中提取被引用条目的原文内容。
+
 JSON 结构：
 ```json
 {
