@@ -98,7 +98,15 @@ The dashboard must:
 
 Generate the dashboard as a single self-contained HTML file with inline CSS and JavaScript. Use Chart.js loaded from CDN for the line chart. The JS should fetch `results.json` (which you update after each experiment alongside results.tsv) and re-render.
 
-**Open it immediately** after creating it: `open dashboard.html` (macOS) so the user can see it in their browser.
+**Open it immediately** after creating it: start an HTTP server in the background, then open via `http://`:
+
+```bash
+cd /path/to/autoresearch-[skill-name]/
+python3 -m http.server 8080 &
+open http://localhost:8080/dashboard.html
+```
+
+Tell the user: **"Dashboard available at http://localhost:8080 — keep this server running during the experiment loop."**
 
 **CORS note:** When opening `dashboard.html` directly via `file://`, the browser blocks `fetch('results.json')`. To fix this, embed the current `results.json` content directly in the `<script>` as a fallback before attempting the fetch:
 ```html
@@ -149,7 +157,7 @@ Run the skill AS-IS before changing anything. This is experiment #0.
    ```
    If the target skill already has an ignore entry for its own outputs (e.g. `reports/`), append the pattern to the existing section.
 3. Create `results.tsv` with the header row
-4. Create `results.json` and `dashboard.html`, then open the dashboard in the browser
+4. Create `results.json` and `dashboard.html`, then start the HTTP server and open via `http://localhost:8080/dashboard.html`
 5. Back up the original SKILL.md as `SKILL.md.baseline`
 6. Run the skill [N] times using the test inputs
 7. Score every output against every eval
