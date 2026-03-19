@@ -33,3 +33,6 @@ generated-images/
 
 # Autoresearch output directories (per-skill experiment results)
 .claude/skills/*/autoresearch-*/
+
+# News aggregator skill (in development)
+.claude/skills/news-aggregator-skill/
