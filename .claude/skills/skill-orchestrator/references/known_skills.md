@@ -24,9 +24,9 @@
 - **技能创建** → skill-creator, find-skills, autoresearch, autotune
 - **编排协调** → skill-orchestrator
 
-## 动态发现
+## 动态发现技能
 
-使用 `npx skills find [关键词]` 进行动态搜索：
+若为完成项目所需的技能不在已安装技能内，则使用 `npx skills find [关键词]` 进行动态搜索：
 
 当需要安装新技能时，询问用户安装位置：
 - **global (-g)**: 所有项目可用
