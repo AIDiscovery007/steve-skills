@@ -34,5 +34,8 @@ generated-images/
 # Autoresearch output directories (per-skill experiment results)
 .claude/skills/*/autoresearch-*/
 
+# Autotune output directories (per-prompt experiment results)
+.claude/skills/*/autotune-*/
+
 # News aggregator skill (in development)
 .claude/skills/news-aggregator-skill/

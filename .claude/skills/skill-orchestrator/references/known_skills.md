@@ -12,8 +12,8 @@
 | news-aggregator-skill | 新闻聚合 | 新闻, news, 聚合 |
 | find-skills | 技能发现安装 | find skill, 查找技能 |
 | skill-creator | 创建新 skill | create skill, 创建技能 |
-| autoresearch | Skill 优化迭代 | optimize, improve, 优化 |
-| skill-orchestrator | 多技能编排协调 | 复杂任务, 编排, 协调 |
+| autoresearch | Skill 优化迭代（仅限 SKILL.md） | optimize, improve, 优化 |
+| autotune | 通用 prompt 优化迭代（任何 .md 文档） | optimize prompt, tune, autotune, 优化 prompt |
 
 ## 技能发现策略
 
@@ -21,7 +21,7 @@
 - **代码/Git** → git-commit, git-cleanup
 - **图片生成** → nano-banana-2
 - **新闻/情报** → news-aggregator-skill
-- **技能创建** → skill-creator, find-skills, autoresearch
+- **技能创建** → skill-creator, find-skills, autoresearch, autotune
 - **编排协调** → skill-orchestrator
 
 ## 动态发现

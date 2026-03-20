@@ -26,10 +26,32 @@ npx skills find <keyword>
 - `skill-indexer/` - 用于同步和维护 known_skills.md
 - Skills communicate via skill-orchestrator for multi-step tasks
 
+## Workflow
+
+### Complexity Analysis
+After receiving the user's prompt, ALWAYS analyze its complexity first.
+
+**MUST invoke `skill-orchestrator/` when:**
+- User asks to "完成XX任务" / "实现YY效果" without specifying how
+- Problem requires multiple skills or tools working together
+- User says "需要多种工具" / "不确定怎么做"
+- Task spans multiple domains (e.g., git + analysis + news)
+- Any multi-step problem that cannot be answered in one response
+
+**Single-step tasks (do NOT over-engineer):**
+- Simple code edits, typo fixes, file reads
+- Questions that have direct answers
+- One specific tool/skill can solve it directly
+
+### Skill Invocation
+- Use `/skill-name` format to invoke skills directly
+- Skills are listed in `skill-orchestrator/references/known_skills.md`
+
 ## Adding New Skills
 
-AFTER installing and creating new skills:
+**AFTER installing and creating new skills, you MUST follow these 3 steps in order:**
 
-1. Request installation location: global (-g) vs project-only
-2. Add to `skills-lock.json` for tracking
-3. IMPORTANT: USE MUST use `skill-indexer` skill to Update `known_skills.md` table and categories
+1. **Request location** — Ask user: global (`-g`) or project-only?
+2. **Lock it** — Add to `skills-lock.json` for tracking
+3. **Index it** — Use `/skill-indexer` to update `known_skills.md` table and categories
+4. **Ignore it** — Add skill output directories to `.gitignore` (e.g., `autotune-*/`, `autoresearch-*/`, `reports/`, `output/`)
