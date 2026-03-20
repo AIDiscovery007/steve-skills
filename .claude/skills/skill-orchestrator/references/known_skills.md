@@ -14,6 +14,7 @@
 | skill-creator | 创建新 skill | create skill, 创建技能 |
 | autoresearch | Skill 优化迭代（仅限 SKILL.md） | optimize, improve, 优化 |
 | autotune | 通用 prompt 优化迭代（任何 .md 文档） | optimize prompt, tune, autotune, 优化 prompt |
+| xlsx | Excel 表格处理（读取、编辑、格式化、拆表） | xlsx, excel, 表格, spreadsheet |
 
 ## 技能发现策略
 
@@ -21,6 +22,7 @@
 - **代码/Git** → git-commit, git-cleanup
 - **图片生成** → nano-banana-2
 - **新闻/情报** → news-aggregator-skill
+- **Excel/表格** → xlsx
 - **技能创建** → skill-creator, find-skills, autoresearch, autotune
 - **编排协调** → skill-orchestrator
 
@@ -32,4 +34,4 @@
 - **global (-g)**: 所有项目可用
 - **project**: 仅当前项目可用
 
-安装命令：`npx skills add <package> [-g] -y`
+安装命令：`npx skills add <package> --skill <skill-name> [-g] -y`

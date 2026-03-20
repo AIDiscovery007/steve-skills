@@ -13,11 +13,13 @@ Skills are installed in `.claude/skills/`. See `skill-orchestrator/references/kn
 ## Common Commands
 
 ```bash
-# 安装新 skill
-npx skills add <package> [-g] -y
+# 安装新 skill（从 GitHub 安装特定 skill）
+npx skills add <package> --skill <skill-name> [-g] -y
 
 # 搜索可用 skills
 npx skills find <keyword>
+
+# 运行python脚本（默认使用 python3）
 ```
 
 ## Architecture

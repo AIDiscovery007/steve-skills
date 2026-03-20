@@ -39,3 +39,6 @@ generated-images/
 
 # News aggregator skill (in development)
 .claude/skills/news-aggregator-skill/
+
+# xlsx skill
+.claude/skills/xlsx/
