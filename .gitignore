@@ -36,9 +36,3 @@ generated-images/
 
 # Autotune output directories (per-prompt experiment results)
 .claude/skills/*/autotune-*/
-
-# News aggregator skill (in development)
-.claude/skills/news-aggregator-skill/
-
-# xlsx skill
-.claude/skills/xlsx/
