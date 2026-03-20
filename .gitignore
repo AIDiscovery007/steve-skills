@@ -30,6 +30,7 @@ generated-images/
 # Skills output (generated reports)
 .claude/skills/gold-analyst/reports/
 .claude/skills/liquidity-report/output/
+.claude/skills/news-aggregator-skill/reports/
 
 # Autoresearch output directories (per-skill experiment results)
 .claude/skills/*/autoresearch-*/
