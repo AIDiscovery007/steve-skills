@@ -34,7 +34,7 @@ npx skills find <keyword>
 After receiving the user's prompt, ALWAYS analyze its complexity first.
 
 **MUST invoke `skill-orchestrator/` when:**
-- User asks to "完成XX任务" / "实现YY效果" without specifying how
+- User asks to "完成复杂任务" / "实现自动化报告生成" without specifying how
 - Problem requires multiple skills or tools working together
 - User says "需要多种工具" / "不确定怎么做"
 - Task spans multiple domains (e.g., git + analysis + news)

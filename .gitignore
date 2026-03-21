@@ -28,12 +28,18 @@ generated-images/
 .DS_Store
 
 # Skills output (generated reports)
+reports/
 .claude/skills/gold-analyst/reports/
 .claude/skills/liquidity-report/output/
 .claude/skills/news-aggregator-skill/reports/
+.claude/skills/html-renderer/output/
 
 # Autoresearch output directories (per-skill experiment results)
 .claude/skills/*/autoresearch-*/
 
 # Autotune output directories (per-prompt experiment results)
 .claude/skills/*/autotune-*/
+
+# Agent/skills installed globally (symlinked skills)
+.agents/
+autotune-*/
