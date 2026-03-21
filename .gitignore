@@ -43,3 +43,7 @@ reports/
 # Agent/skills installed globally (symlinked skills)
 .agents/
 autotune-*/
+
+# Python cache
+__pycache__/
+*.pyc
