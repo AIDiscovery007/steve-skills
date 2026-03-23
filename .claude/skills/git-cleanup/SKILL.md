@@ -1,6 +1,8 @@
 ---
 name: git-cleanup
-description: "Safely analyzes and cleans up local git branches and worktrees by categorizing them as merged, squash-merged, superseded, or active work."
+description: |
+  Use when: user asks to clean up local branches, delete worktrees, organize cluttered local repo, or says "clean branches" / "delete worktree" / "清理分支"
+  Don't use when: user wants to commit code (use git-commit), view commit history, or manage remote branches. Counter-example: "what changed in the last commit?" / "push my changes to remote"
 disable-model-invocation: true
 allowed-tools:
   - Bash

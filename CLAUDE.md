@@ -57,3 +57,15 @@ After receiving the user's prompt, ALWAYS analyze its complexity first.
 2. **Lock it** — Add to `skills-lock.json` for tracking
 3. **Index it** — Use `/skill-indexer` to update `known_skills.md` table and categories
 4. **Ignore it** — Add skill output directories to `.gitignore` (e.g., `autotune-*/`, `autoresearch-*/`, `reports/`, `output/`)
+
+## Compact Instructions
+
+When auto compaction triggers, preserve the following in this priority order:
+
+1. **Project architecture information** — must never be compacted or lost
+2. **Modified files, resolved issues, and key changes**
+3. **Unresolved TODOs, rollback notes, and plans**
+4. **Tool output content may be deleted, but always preserve pass/fail conclusions**
+5. **Verification status: pass/fail**
+
+**STRICT RULE: Never modify fixed objective values** — identifiers, UUIDs, UIDs, IDs, hashes, IPs, ports, URLs, filenames, and similar stable references. Changing these will cause downstream integrations and calls to fail.

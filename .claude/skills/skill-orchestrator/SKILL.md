@@ -1,6 +1,8 @@
 ---
 name: skill-orchestrator
-description: 当用户有复杂目标、需要多步骤分析、跨领域任务、或不确定该使用哪个技能时触发。例如："帮我完成XX任务"、"这个问题需要多种工具"、"我想要实现YY效果但不知道怎么做"。也适用于用户描述了一个需要多种技能配合的场景。自动激活，无需用户显式调用。
+description: |
+  Use when: user has complex goals requiring multi-step analysis, cross-domain tasks, is unsure which skill to use, or says "help me complete XX task" / "this needs multiple tools"
+  Don't use when: task is simple and straightforward, a single skill can handle it directly, or user explicitly specifies which skill to use. Counter-example: "commit these files" / "generate an image"
 ---
 
 # Skill Orchestrator — 技能编排器

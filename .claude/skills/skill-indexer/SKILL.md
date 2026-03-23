@@ -1,6 +1,8 @@
 ---
 name: skill-indexer
-description: 更新 orchestrator 的 known_skills.md。当需要同步 skills 列表、整理 skill 分类时使用。
+description: |
+  Use when: need to sync/update known_skills.md, organize skill categories, or index newly installed skills
+  Don't use when: user has specific execution tasks (analysis, content generation, code commit), or just needs to query a specific skill's functionality
 ---
 
 # Skill Indexer

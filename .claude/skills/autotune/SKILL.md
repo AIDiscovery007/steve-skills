@@ -1,6 +1,8 @@
 ---
 name: autotune
-description: "Autonomously optimize any markdown prompt document by running it repeatedly, scoring outputs against binary evals, mutating the prompt, and keeping improvements. Based on Karpathy's autoresearch methodology. Use when: optimize this prompt, improve this document, run autotune on, make this better, self-improve prompt, benchmark this prompt, tune this instructions, optimize my claude.md. Works on: SKILL.md, CLAUDE.md, instruction files, harness docs, or any .md prompt document. Outputs: an improved prompt file, a results log, and a changelog of every mutation tried."
+description: |
+  Use when: user asks to optimize a prompt document, improve instructions, benchmark a prompt, or says "optimize this prompt" / "improve claude.md" / "autotune"
+  Don't use when: user wants to optimize a Claude Code skill itself (use autoresearch-skill instead)
 ---
 
 # Autotune

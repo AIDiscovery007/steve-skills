@@ -1,6 +1,8 @@
 ---
 name: find-skills
-description: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
+description: |
+  Use when: user asks if a skill exists for something, how to extend capabilities, or says "is there a skill for X" / "find a skill for X" / "帮我找一个XX工具"
+  Don't use when: user has a specific task to execute (call the appropriate skill directly) or just needs to use an already installed skill
 ---
 
 # Find Skills

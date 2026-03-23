@@ -1,6 +1,8 @@
 ---
 name: gold-analyst
-description: 黄金投资分析。基于实际利率（TIP）、美元指数（DXY）、名义长端利率（TYX）、MOVE、USDJPY、HYG、白银、S&P500 等指标，生成综合评分、仓位建议和具体操作参数（介入区间、止损、目标位）。当用户说「分析黄金」「黄金要不要买」「黄金加仓」「黄金投资建议」「黄金怎么看」「帮我看看黄金」时使用。
+description: |
+  Use when: user asks about gold investment (analyze gold, gold buy/sell/add position, gold investment advice, gold outlook, look at gold prices)
+  Don't use when: user needs other asset analysis (stocks, forex, crypto, liquidity) or non-investment content
 ---
 
 # gold-analyst — 黄金投资分析

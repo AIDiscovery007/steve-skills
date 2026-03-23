@@ -1,6 +1,8 @@
 ---
 name: git-commit
-description: 'Execute git commit with conventional commit message analysis, intelligent staging, and message generation. Use when user asks to commit changes, create a git commit, or mentions "/commit". Supports: (1) Auto-detecting type and scope from changes, (2) Generating conventional commit messages from diff, (3) Interactive commit with optional type/scope/description overrides, (4) Intelligent file staging for logical grouping'
+description: |
+  Use when: user asks to commit changes, create a git commit, execute /commit, or says "commit these changes" / "帮我提交"
+  Don't use when: user only wants to view logs or browse code (use git log), or needs branch management (use git-cleanup instead). Counter-example: "show me the last 10 commits" / "check which branch has this fix"
 license: MIT
 allowed-tools: Bash
 ---

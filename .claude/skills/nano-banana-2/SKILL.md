@@ -1,6 +1,8 @@
 ---
 name: nano-banana-2
-description: "Generate images with Google Gemini 3.1 Flash Image Preview (Nano Banana 2) via inference.sh CLI. Capabilities: text-to-image, image editing, multi-image input (up to 14 images), Google Search grounding. Triggers: nano banana 2, nanobanana 2, gemini 3.1 flash image, gemini 3 1 flash image preview, google image generation"
+description: |
+  Use when: user asks to generate images, edit pictures, image-to-image, or says "generate image" / "draw something" / "nano banana" / "gemini image generation"
+  Don't use when: user needs text analysis, data processing, code writing, or non-image generation tasks
 allowed-tools: Bash(infsh *)
 ---
 

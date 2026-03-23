@@ -1,6 +1,8 @@
 ---
 name: liquidity-report
-description: 生成全球流动性日报。基于 SOFR、MOVE、USDJPY、HYG、ON RRP、S&P500、黄金、白银、美元指数（DXY）、TIPS债券（TIP）、30年国债收益率（TYX）等指标，按流动性传导链路（净流动性水位→短端资金→利率波动→套息交易→信用确认）进行综合分析，输出 Markdown 格式报告并可发布到 hi Redoc。当用户说「生成流动性报告」「看一下流动性」「流动性日报」「拉一下市场数据」时使用。
+description: |
+  Use when: user requests global liquidity report, market data review, liquidity transmission analysis, or says "liquidity report" / "show me liquidity" / "market data"
+  Don't use when: user needs stock analysis, technical analysis, or specific gold/silver investment advice (use gold-analyst instead)
 ---
 
 # liquidity-report — 全球流动性日报

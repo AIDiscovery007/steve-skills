@@ -1,6 +1,8 @@
 ---
 name: news-aggregator-skill
-description: "Comprehensive news aggregator that fetches, filters, and deeply analyzes real-time content from 28 sources including Hacker News, GitHub, Hugging Face Papers, AI Newsletters, WallStreetCN, Weibo, and Podcasts. Use when user requests 'daily scans', 'tech news', 'finance updates', 'AI briefings', 'deep analysis', or says '如意如意' to open the interactive menu."
+description: |
+  Use when: user requests news aggregation, tech updates, AI briefings, deep analysis, daily news scan, finance updates, or says "daily scans" / "如意如意" for interactive menu
+  Don't use when: user needs investment advice, trade execution, or specific asset buy/sell analysis. Counter-example: "should I buy gold now?" / "give me stock recommendations"
 ---
 
 # News Aggregator Skill
