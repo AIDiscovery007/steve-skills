@@ -24,7 +24,11 @@ Create a JSON file for tracking feature test status. Initialize with:
     "created": "<ISO timestamp>",
     "description": "Feature test tracking"
   },
-  "features": []
+  "features": [
+    {"id": "1", "desc": "搭建项目前端框架", "passes": true},
+    {"id": "2", "desc": "修改数据库 schema", "passes": false},
+    {"id": "3", "desc": "更新 API 接口", "passes": false}
+  ]
 }
 ```
 
@@ -77,6 +81,10 @@ Create a markdown file for tracking cross-session development progress. Include:
 ## Next Steps
 - 
 ```
+
+## Completion Criteria
+
+**Task is only complete when ALL features in feature-list.json have `passes: true`.** Until then, the task remains incomplete even if other files are created.
 
 ## Workflow
 
