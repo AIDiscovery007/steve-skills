@@ -4,6 +4,7 @@
 
 | 技能名称 | 职责说明 | 触发关键词 |
 |---------|---------|-----------|
+| session-reflect | Session 复盘（GRAI + KISS）| reflect, 复盘, review, session, /reflect |
 | git-commit | Git 提交分析 | commit, git提交 |
 | git-cleanup | 清理本地 Git 分支 | branch, cleanup, 清理 |
 | gold-analyst | 黄金投资分析 | 黄金, gold, 投资 |
