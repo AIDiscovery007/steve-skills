@@ -8,7 +8,7 @@ This is a personal Claude Code skills repository (`steve-skills`). It contains i
 
 ## Installed Skills
 
-Skills are installed in `.claude/skills/`. See `skill-orchestrator/references/known_skills.md` for the registry.
+Skills are installed in `.claude/skills/`. See `.claude/skills/skill-orchestrator/references/known_skills.md` for the registry.
 
 ## Common Commands
 
@@ -47,14 +47,14 @@ After receiving the user's prompt, ALWAYS analyze its complexity first.
 
 ### Skill Invocation
 - Use `/skill-name` format to invoke skills directly
-- Skills are listed in `skill-orchestrator/references/known_skills.md`
+- Skills are listed in `.claude/skills/skill-orchestrator/references/known_skills.md`
 
 ## Adding New Skills
 
-**AFTER installing and creating new skills, you MUST follow these 3 steps in order:**
+**AFTER installing a new skill or adding a new local skill directory, you MUST follow these 4 steps in order:**
 
-1. **Request location** — Ask user: global (`-g`) or project-only?
-2. **Lock it** — Add to `skills-lock.json` for tracking
+1. **Request location** — For external installs, ask user: global (`-g`) or project-only?
+2. **Lock it** — Add externally installed skills to `skills-lock.json` for tracking
 3. **Index it** — Use `/skill-indexer` to update `known_skills.md` table and categories
 4. **Ignore it** — Add skill output directories to `.gitignore` (e.g., `autotune-*/`, `autoresearch-*/`, `reports/`, `output/`)
 

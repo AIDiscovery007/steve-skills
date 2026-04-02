@@ -19,10 +19,7 @@ def run_npx_skills(args: List[str]) -> str:
     """运行 npx skills 命令"""
     try:
         result = subprocess.run(
-            ["npx", "skills"] + args,
-            capture_output=True,
-            text=True,
-            timeout=30
+            ["npx", "skills"] + args, capture_output=True, text=True, timeout=30
         )
         return result.stdout + result.stderr
     except subprocess.TimeoutExpired:
@@ -46,22 +43,21 @@ def find_skills(keyword: str) -> List[Dict[str, str]]:
     # 解析 npx skills find 输出
     # 格式可能是:
     # skill-name - description
-    lines = output.strip().split('\n')
+    lines = output.strip().split("\n")
     for line in lines:
         line = line.strip()
-        if not line or line.startswith('npm') or line.startswith('Installing'):
+        if not line or line.startswith("npm") or line.startswith("Installing"):
             continue
-        if ' - ' in line:
-            parts = line.split(' - ', 1)
-            skills.append({
-                "name": parts[0].strip(),
-                "description": parts[1].strip() if len(parts) > 1 else ""
-            })
-        elif line and not line.startswith('#'):
-            skills.append({
-                "name": line,
-                "description": ""
-            })
+        if " - " in line:
+            parts = line.split(" - ", 1)
+            skills.append(
+                {
+                    "name": parts[0].strip(),
+                    "description": parts[1].strip() if len(parts) > 1 else "",
+                }
+            )
+        elif line and not line.startswith("#"):
+            skills.append({"name": line, "description": ""})
 
     return skills
 
@@ -76,26 +72,30 @@ def list_installed_skills() -> List[Dict[str, str]]:
     output = run_npx_skills(["list"])
 
     skills = []
-    lines = output.strip().split('\n')
+    lines = output.strip().split("\n")
     for line in lines:
         line = line.strip()
-        if not line or line.startswith('npm') or line.startswith('Listing'):
+        if not line or line.startswith("npm") or line.startswith("Listing"):
             continue
         # 解析技能名称
-        if line.startswith('- '):
+        if line.startswith("- "):
             line = line[2:]
-        if line.startswith('* '):
+        if line.startswith("* "):
             line = line[2:]
         if line:
-            skills.append({
-                "name": line.split(' ')[0] if ' ' in line else line,
-                "description": line
-            })
+            skills.append(
+                {
+                    "name": line.split(" ")[0] if " " in line else line,
+                    "description": line,
+                }
+            )
 
     return skills
 
 
-def match_skills_to_tasks(keywords: List[str], installed_only: bool = True) -> Dict[str, List[Dict[str, str]]]:
+def match_skills_to_tasks(
+    keywords: List[str], installed_only: bool = True
+) -> Dict[str, List[Dict[str, str]]]:
     """
     将关键词匹配到技能
 
@@ -114,7 +114,7 @@ def match_skills_to_tasks(keywords: List[str], installed_only: bool = True) -> D
         "新闻": ["news-aggregator-skill"],
         "图片": ["nano-banana-2"],
         "Git": ["git-commit"],
-        "技能": ["skill-creator", "autoresearch-skill"],
+        "技能": ["find-skills", "autoresearch", "autotune"],
         "分析": ["gold-analyst", "liquidity-report"],
         "报告": ["liquidity-report"],
     }
@@ -124,8 +124,7 @@ def match_skills_to_tasks(keywords: List[str], installed_only: bool = True) -> D
     for keyword in keywords:
         if keyword in known_skill_map:
             matched[keyword] = [
-                {"name": skill, "description": ""}
-                for skill in known_skill_map[keyword]
+                {"name": skill, "description": ""} for skill in known_skill_map[keyword]
             ]
         elif not installed_only:
             # 动态搜索

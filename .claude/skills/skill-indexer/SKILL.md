@@ -7,13 +7,13 @@ description: |
 
 # Skill Indexer
 
-同步和维护 orchestrator-skill 的 known_skills.md 文档。
+同步和维护 `skill-orchestrator` 的 `known_skills.md` 文档。
 
 ## 工作流程
 
 ### 1. 扫描 Skills
 
-运行 `python scripts/scan_skills.py` 获取所有已安装 skill 的 name 和 description。
+运行 `python scripts/scan_skills.py` 获取项目级 `.claude/skills/` 下所有带 `SKILL.md` 的 skill 的 `name` 和 `description`。
 
 ### 2. 分析变化
 

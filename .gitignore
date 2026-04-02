@@ -2,23 +2,13 @@
 .env.local
 .env
 
-# TypeScript compiled output
-.claude/skills/prompt-generator/api/*.js
-.claude/skills/prompt-generator/api/*.d.ts
-
-# Node modules (only @types/node for TypeScript)
-.claude/skills/prompt-generator/api/node_modules/
-.claude/skills/prompt-generator/api/package-lock.json
+# Legacy helper directories
+.claude/generating-images/
 
 # Generated images
 generated-images/
 *.tuzi-temp.png
 
-
-.claude/skills/generating-images/node_modules/
-.claude/skills/generating-images/package.json
-.claude/skills/generating-images/package-lock.json
-.claude/skills/generating-images/.env.local.example
 
 /imgs-reference/
 /nice_prompts/
@@ -42,6 +32,7 @@ reports/
 
 # Agent/skills installed globally (symlinked skills)
 .agents/
+.claude/skills/frontend-design
 autotune-*/
 
 # Python cache

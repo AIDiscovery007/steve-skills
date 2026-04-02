@@ -28,7 +28,7 @@ def extract_intent_and_entities(goal_text: str) -> Dict[str, Any]:
     goal_text = goal_text.strip()
 
     # 移除句末标点
-    goal_text = re.sub(r'[。.。]+$', '', goal_text)
+    goal_text = re.sub(r"[。.。]+$", "", goal_text)
 
     # 提取关键词（用于技能匹配）
     keywords = extract_keywords(goal_text)
@@ -84,12 +84,12 @@ def extract_constraints(text: str) -> List[str]:
 
     # 时间约束
     time_patterns = [
-        (r'(\d+)\s*分钟', '分钟'),
-        (r'(\d+)\s*小时', '小时'),
-        (r'(\d+)\s*天', '天'),
-        (r'今天', '今天'),
-        (r'明天', '明天'),
-        (r'本周', '本周'),
+        (r"(\d+)\s*分钟", "分钟"),
+        (r"(\d+)\s*小时", "小时"),
+        (r"(\d+)\s*天", "天"),
+        (r"今天", "今天"),
+        (r"明天", "明天"),
+        (r"本周", "本周"),
     ]
 
     for pattern, label in time_patterns:
@@ -97,19 +97,19 @@ def extract_constraints(text: str) -> List[str]:
             constraints.append(f"时间: {label}")
 
     # 格式约束
-    if 'markdown' in text.lower() or 'md' in text.lower():
+    if "markdown" in text.lower() or "md" in text.lower():
         constraints.append("格式: Markdown")
-    if 'pdf' in text.lower():
+    if "pdf" in text.lower():
         constraints.append("格式: PDF")
-    if '表格' in text or 'excel' in text.lower():
+    if "表格" in text or "excel" in text.lower():
         constraints.append("格式: 表格/Excel")
 
     # 风格约束
-    if '简洁' in text:
+    if "简洁" in text:
         constraints.append("风格: 简洁")
-    if '详细' in text:
+    if "详细" in text:
         constraints.append("风格: 详细")
-    if '专业' in text:
+    if "专业" in text:
         constraints.append("风格: 专业")
 
     return constraints
@@ -118,12 +118,12 @@ def extract_constraints(text: str) -> List[str]:
 def extract_expected_output(text: str) -> str:
     """识别期望交付物"""
     output_patterns = [
-        (r'生成.*?报告', '报告'),
-        (r'分析.*?结果', '分析结果'),
-        (r'给出.*?建议', '建议'),
-        (r'创建.*?技能', '新技能'),
-        (r'生成.*?图片', '图片'),
-        (r'总结.*?', '总结'),
+        (r"生成.*?报告", "报告"),
+        (r"分析.*?结果", "分析结果"),
+        (r"给出.*?建议", "建议"),
+        (r"创建.*?技能", "新技能"),
+        (r"生成.*?图片", "图片"),
+        (r"总结.*?", "总结"),
     ]
 
     for pattern, output in output_patterns:
@@ -145,21 +145,21 @@ def assess_complexity(text: str, keywords: List[str]) -> str:
         complexity_score += 1
 
     # 多步骤指示
-    multi_step_indicators = ['然后', '接下来', '再', '首先', '其次', '最后']
+    multi_step_indicators = ["然后", "接下来", "再", "首先", "其次", "最后"]
     for indicator in multi_step_indicators:
         if indicator in text:
             complexity_score += 1
             break
 
     # 不确定表述
-    uncertainty_indicators = ['不知道', '不确定', '怎么', '如何']
+    uncertainty_indicators = ["不知道", "不确定", "怎么", "如何"]
     for indicator in uncertainty_indicators:
         if indicator in text:
             complexity_score += 1
             break
 
     # 跨领域指示
-    cross_domain = ['既要', '又要', '同时', '并且', '和']
+    cross_domain = ["既要", "又要", "同时", "并且", "和"]
     for indicator in cross_domain:
         if indicator in text:
             complexity_score += 1
@@ -177,18 +177,18 @@ def extract_final_goal(text: str) -> str:
     """提取最终目标（简化文本）"""
     # 移除常见前缀
     prefixes_to_remove = [
-        r'^帮我',
-        r'^请帮我',
-        r'^我想',
-        r'^我要',
-        r'^帮我完成',
-        r'^帮我创建',
-        r'^帮我生成',
+        r"^帮我",
+        r"^请帮我",
+        r"^我想",
+        r"^我要",
+        r"^帮我完成",
+        r"^帮我创建",
+        r"^帮我生成",
     ]
 
     result = text
     for prefix in prefixes_to_remove:
-        result = re.sub(prefix, '', result)
+        result = re.sub(prefix, "", result)
 
     return result.strip()
 
@@ -211,33 +211,20 @@ def decompose_task(goal_text: str, keywords: List[str]) -> List[Dict[str, Any]]:
 
     # 基于关键词生成任务
     task_templates = {
-        "投资": [
-            {"description": "分析投资机会", "skills": ["gold-analyst"]}
-        ],
-        "黄金": [
-            {"description": "黄金投资分析", "skills": ["gold-analyst"]}
-        ],
-        "流动性": [
-            {"description": "生成流动性报告", "skills": ["liquidity-report"]}
-        ],
-        "新闻": [
-            {"description": "聚合新闻资讯", "skills": ["news-aggregator-skill"]}
-        ],
-        "图片": [
-            {"description": "生成图片", "skills": ["nano-banana-2"]}
-        ],
-        "Git": [
-            {"description": "Git提交分析", "skills": ["git-commit"]}
-        ],
+        "投资": [{"description": "分析投资机会", "skills": ["gold-analyst"]}],
+        "黄金": [{"description": "黄金投资分析", "skills": ["gold-analyst"]}],
+        "流动性": [{"description": "生成流动性报告", "skills": ["liquidity-report"]}],
+        "新闻": [{"description": "聚合新闻资讯", "skills": ["news-aggregator-skill"]}],
+        "图片": [{"description": "生成图片", "skills": ["nano-banana-2"]}],
+        "Git": [{"description": "Git提交分析", "skills": ["git-commit"]}],
         "技能": [
-            {"description": "创建或优化技能", "skills": ["skill-creator"]}
+            {
+                "description": "发现或优化技能",
+                "skills": ["find-skills", "autoresearch", "autotune"],
+            }
         ],
-        "分析": [
-            {"description": "综合分析", "skills": []}
-        ],
-        "报告": [
-            {"description": "生成报告", "skills": ["liquidity-report"]}
-        ],
+        "分析": [{"description": "综合分析", "skills": []}],
+        "报告": [{"description": "生成报告", "skills": ["liquidity-report"]}],
     }
 
     task_id = 1
@@ -251,7 +238,7 @@ def decompose_task(goal_text: str, keywords: List[str]) -> List[Dict[str, Any]]:
                         "task_id": f"task_{task_id}",
                         "description": template["description"],
                         "required_skills": template["skills"],
-                        "depends_on": []
+                        "depends_on": [],
                     }
                     tasks.append(task)
                     covered_keywords.add(keyword)
@@ -259,12 +246,14 @@ def decompose_task(goal_text: str, keywords: List[str]) -> List[Dict[str, Any]]:
 
     # 如果没有匹配的任务，创建一个通用任务
     if not tasks:
-        tasks.append({
-            "task_id": "task_1",
-            "description": "处理用户请求",
-            "required_skills": [],
-            "depends_on": []
-        })
+        tasks.append(
+            {
+                "task_id": "task_1",
+                "description": "处理用户请求",
+                "required_skills": [],
+                "depends_on": [],
+            }
+        )
 
     return tasks
 

@@ -12,21 +12,21 @@
 | nano-banana-2 | Gemini 图片生成 | 图片, image, 生成 |
 | news-aggregator-skill | 新闻聚合 | 新闻, news, 聚合 |
 | find-skills | 技能发现安装 | find skill, 查找技能 |
-| skill-creator | 创建新 skill | create skill, 创建技能 |
-| autoresearch | Skill 优化迭代（仅限 SKILL.md） | optimize, improve, 优化 |
+| frontend-design | 高质量前端界面设计与实现 | 前端, UI, design |
+| html-renderer | Markdown 报告渲染为精美 HTML 并自动打开浏览器 | render, HTML, 渲染, 美化报告 |
 | autotune | 通用 prompt 优化迭代（任何 .md 文档） | optimize prompt, tune, autotune, 优化 prompt |
-| xlsx | Excel 表格处理（读取、编辑、格式化、拆表） | xlsx, excel, 表格, spreadsheet |
-| html-renderer | Markdown 报告渲染为精美 HTML 并自动打开浏览器 | render, HTML, 渲染, 美化报告, open in browser |
+| autoresearch | Skill 优化迭代（仅限 SKILL.md） | optimize skill, autoresearch, 优化技能 |
+| skill-orchestrator | 复杂任务拆解与多技能编排 | orchestrate, 编排, 多步骤 |
+| skill-indexer | 同步维护 known_skills.md | 同步 skills, 更新索引 |
 
 ## 技能发现策略
 
 - **投资相关** → gold-analyst, liquidity-report
 - **代码/Git** → git-commit, git-cleanup
+- **前端/UI** → frontend-design, html-renderer
 - **图片生成** → nano-banana-2
 - **新闻/情报** → news-aggregator-skill
-- **Excel/表格** → xlsx
-- **报告渲染** → html-renderer
-- **技能创建** → skill-creator, find-skills, autoresearch, autotune
+- **技能安装与维护** → find-skills, skill-indexer, autoresearch, autotune
 - **编排协调** → skill-orchestrator
 
 ## 动态发现技能

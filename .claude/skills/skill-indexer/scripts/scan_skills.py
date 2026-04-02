@@ -2,19 +2,18 @@
 """
 scan_skills.py - 扫描所有已安装的 skills
 
-扫描 ~/.agents/skills/ 和项目级 .claude/skills/ 目录，
-读取每个 skill 的 SKILL.md 提取 name 和 description。
+扫描项目级 .claude/skills/ 目录，读取每个包含 SKILL.md 的 skill，
+提取 name 和 description。
 """
 
-import os
 import json
 import re
 from pathlib import Path
 from typing import Dict, List, Optional
 
-# Skills 目录（仅项目级）
+# Skills 目录（项目级，基于脚本位置推导）
 SKILL_DIRS = [
-    Path.home() / "steve-skills" / ".claude" / "skills",
+    Path(__file__).resolve().parents[2],
 ]
 
 
@@ -77,10 +76,6 @@ def scan_skills() -> List[Dict[str, str]]:
 
         for item in skill_dir.iterdir():
             if item.is_dir() and not item.name.startswith("."):
-                # 跳过自己的目录
-                if item.name == "skill-indexer":
-                    continue
-
                 skill_info = extract_skill_info(item)
                 if skill_info and skill_info["name"] not in seen_names:
                     all_skills.append(skill_info)
