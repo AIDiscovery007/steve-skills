@@ -30,6 +30,31 @@ def path_provenance(skill_path: Path) -> str:
         return "third-party-or-compat"
 
 
+def extract_frontmatter_value(frontmatter: str, key: str) -> Optional[str]:
+    direct_match = re.search(rf"^{key}:\s*(.+)$", frontmatter, re.MULTILINE)
+    if not direct_match:
+        return None
+
+    value = direct_match.group(1).strip()
+    if value not in {"|", ">"}:
+        return value
+
+    lines = frontmatter.splitlines()
+    collected = []
+    capture = False
+    for line in lines:
+        if not capture:
+            if re.match(rf"^{key}:\s*[|>]\s*$", line):
+                capture = True
+            continue
+
+        if not line.startswith("  "):
+            break
+        collected.append(line.strip())
+
+    return " ".join(collected).strip() if collected else value
+
+
 def extract_skill_info(skill_path: Path) -> Optional[Dict[str, str]]:
     """从 SKILL.md 提取 skill 信息"""
     skill_md = skill_path / "SKILL.md"
@@ -49,20 +74,12 @@ def extract_skill_info(skill_path: Path) -> Optional[Dict[str, str]]:
         if len(parts) >= 3:
             frontmatter = parts[1]
             # 提取 name
-            name_match = re.search(r"^name:\s*(.+)$", frontmatter, re.MULTILINE)
-            if name_match:
-                name = name_match.group(1).strip()
+            name = extract_frontmatter_value(frontmatter, "name")
 
             # 提取 description
-            desc_match = re.search(r"^description:\s*(.+)$", frontmatter, re.MULTILINE)
-            if desc_match:
-                description = desc_match.group(1).strip()
+            description = extract_frontmatter_value(frontmatter, "description")
 
-            legacy_match = re.search(
-                r"^legacy_alias_of:\s*(.+)$", frontmatter, re.MULTILINE
-            )
-            if legacy_match:
-                legacy_alias_of = legacy_match.group(1).strip()
+            legacy_alias_of = extract_frontmatter_value(frontmatter, "legacy_alias_of")
 
     if legacy_alias_of:
         return None
