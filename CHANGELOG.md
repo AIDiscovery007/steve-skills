@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-04-03
+
+### Fixed
+- Add `.claude-plugin/plugin.json` so installed marketplace plugins register packaged skills correctly
+- Bump plugin version to `0.1.1` so existing installs can update cleanly
+
 ## 0.1.0 - 2026-04-03
 
 ### Added

@@ -1,0 +1,9 @@
+{
+  "name": "skent-skills",
+  "description": "First-party skent skills for macro analysis, rendering, tuning, reflection, and skill orchestration",
+  "version": "0.1.1",
+  "author": {
+    "name": "Qiaochao"
+  },
+  "repository": "https://github.com/AIDiscovery007/steve-skills"
+}

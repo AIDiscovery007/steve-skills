@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "First-party skent skills for macro analysis, rendering, tuning, and skill orchestration",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
       "name": "skent-skills",
       "description": "First-party skent skills from steve-skills",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Qiaochao"
       },
