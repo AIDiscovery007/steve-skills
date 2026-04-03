@@ -8,6 +8,11 @@
 - `.claude/skills/` 保留本地兼容层与第三方安装 skill
 - 第三方来源通过 `THIRD_PARTY_SKILLS.md` 和 `third_party/registry.json` 明确标注
 
+## Documentation Policy
+
+- `README.md` 面向仓库外部用户，优先写仓库介绍、安装方式、使用教程、常见问题
+- 维护者发布流程、内部规则、故障排查 know-how 优先写入 `docs/` 和 `CLAUDE.md`
+
 ## Canonical Layout
 
 ```text
@@ -26,12 +31,15 @@ third_party/            # provenance registry for external skills
 ## Publishing Rules
 
 - `.claude-plugin/marketplace.json` 只包含 `skills/skent-*`
+- `.claude-plugin/plugin.json` 必须存在；缺失时 plugin 可能能安装但 skills 不会注册
 - 第三方 skill 绝不进入 marketplace
+- 发布时同步更新 `.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json` 中的版本号
 - 新增第一方 skill 后，必须同步更新：
   - `README.md`
   - `CHANGELOG.md`
   - `.claude-plugin/marketplace.json`
   - `skills/skent-skill-orchestrator/references/known_skills.md`
+- 详细发布流程与故障排查见 `docs/plugin-publishing-knowhow.md`
 
 ## First-Party Skills
 
@@ -75,6 +83,7 @@ third_party/            # provenance registry for external skills
 - `skent-skill-indexer` 优先扫描 `skills/`，再扫描 `.claude/skills/`
 - 带 `legacy_alias_of` frontmatter 的 skill 会被视为兼容别名并从 canonical registry 中排除
 - `skent-skill-orchestrator` 的已知技能表位于 `skills/skent-skill-orchestrator/references/known_skills.md`
+- 已安装 plugin skill 默认使用 `/skent-skills:<skill-name>` 这种 namespaced 调用方式
 
 ## Third-Party Install Checklist
 
