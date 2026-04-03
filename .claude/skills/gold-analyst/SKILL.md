@@ -3,9 +3,13 @@ name: gold-analyst
 description: |
   Use when: user asks about gold investment (analyze gold, gold buy/sell/add position, gold investment advice, gold outlook, look at gold prices)
   Don't use when: user needs other asset analysis (stocks, forex, crypto, liquidity) or non-investment content
+version: 0.1.0
+legacy_alias_of: skent-gold-analyst
 ---
 
 # gold-analyst — 黄金投资分析
+
+> Legacy alias. Canonical first-party skill: `/skent-gold-analyst` in `skills/skent-gold-analyst/`.
 
 ## 数据获取
 
@@ -36,7 +40,7 @@ description: |
 将数据整合为 JSON 后调用分析脚本：
 
 ```bash
-echo '<JSON>' | python3 {skillDir}/scripts/analyze.py
+echo '<JSON>' | python3 {baseDir}/scripts/analyze.py
 ```
 
 JSON 结构：

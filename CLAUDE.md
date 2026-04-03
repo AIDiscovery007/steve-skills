@@ -1,57 +1,82 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Repository Purpose
 
-This is a personal Claude Code skills repository (`steve-skills`). It contains installed skills that extend Claude's capabilities for investment analysis, git workflows, image generation, news aggregation, and skill development.
+`steve-skills` 是一个混合来源的 Claude Code skills 仓库。
 
-## Installed Skills
+- 第一方自研 skill 放在 `skills/skent-*`
+- `.claude/skills/` 保留本地兼容层与第三方安装 skill
+- 第三方来源通过 `THIRD_PARTY_SKILLS.md` 和 `third_party/registry.json` 明确标注
 
-Skills are installed in `.claude/skills/`. See `.claude/skills/skill-orchestrator/references/known_skills.md` for the registry.
+## Canonical Layout
 
-## Common Commands
-
-```bash
-# 安装新 skill（从 GitHub 安装特定 skill）
-npx skills add <package> --skill <skill-name> [-g] -y
-
-# 搜索可用 skills
-npx skills find <keyword>
-
-# 运行python脚本（默认使用 python3）
+```text
+skills/                 # canonical first-party skills only
+.claude/skills/         # local compatibility + third-party installed skills
+.claude-plugin/         # marketplace manifest
+third_party/            # provenance registry for external skills
 ```
 
-## Architecture
+## Naming Rules
 
-- `skill-orchestrator/` - 主编排器，维护 known_skills.md 作为技能注册表
-- `skill-indexer/` - 用于同步和维护 known_skills.md
-- Skills communicate via skill-orchestrator for multi-step tasks
+- 所有第一方 skill 必须使用 `skent-` 前缀
+- 历史旧名只允许作为 `.claude/skills/` 下的 legacy alias 保留
+- 第三方 skill 保持上游名称，不改成 `skent-*`
 
-## Workflow
+## Publishing Rules
 
-### Complexity Analysis
-After receiving the user's prompt, ALWAYS analyze its complexity first.
+- `.claude-plugin/marketplace.json` 只包含 `skills/skent-*`
+- 第三方 skill 绝不进入 marketplace
+- 新增第一方 skill 后，必须同步更新：
+  - `README.md`
+  - `CHANGELOG.md`
+  - `.claude-plugin/marketplace.json`
+  - `skills/skent-skill-orchestrator/references/known_skills.md`
 
-**MUST invoke `skill-orchestrator/` when:**
-- User asks to "完成复杂任务" / "实现自动化报告生成" without specifying how
-- Problem requires multiple skills or tools working together
-- User says "需要多种工具" / "不确定怎么做"
-- Task spans multiple domains (e.g., git + analysis + news)
-- Any multi-step problem that cannot be answered in one response
+## First-Party Skills
 
-**Single-step tasks (do NOT over-engineer):**
-- Simple code edits, typo fixes, file reads
-- Questions that have direct answers
-- One specific tool/skill can solve it directly
+- `skent-session-reflect`
+- `skent-gold-analyst`
+- `skent-liquidity-report`
+- `skent-html-renderer`
+- `skent-autotune`
+- `skent-skill-indexer`
+- `skent-skill-orchestrator`
 
-### Skill Invocation
-- Use `/skill-name` format to invoke skills directly
-- Skills are listed in `.claude/skills/skill-orchestrator/references/known_skills.md`
+## Third-Party Skills
 
-## Adding New Skills
+当前明确视为第三方的 skill：
 
-**AFTER installing a new skill or adding a new local skill directory, you MUST follow these 4 steps in order:**
+- `autoresearch`
+- `find-skills`
+- `frontend-design`
+- `git-cleanup`
+- `git-commit`
+- `nano-banana-2`
+- `news-aggregator-skill`
+
+## Maintenance Workflow
+
+### Adding a First-Party Skill
+
+1. 在 `skills/skent-<name>/` 创建 canonical skill
+2. 如需本地兼容，在 `.claude/skills/` 增加对应目录
+3. 更新 marketplace、README、CHANGELOG、known_skills
+
+### Adding a Third-Party Skill
+
+1. 询问安装位置：global 或 project
+2. 如果通过 CLI 安装，更新 `skills-lock.json`
+3. 更新 `THIRD_PARTY_SKILLS.md` 和 `third_party/registry.json`
+4. 不要将该 skill 加入 marketplace
+
+## Indexing and Discovery
+
+- `skent-skill-indexer` 优先扫描 `skills/`，再扫描 `.claude/skills/`
+- 带 `legacy_alias_of` frontmatter 的 skill 会被视为兼容别名并从 canonical registry 中排除
+- `skent-skill-orchestrator` 的已知技能表位于 `skills/skent-skill-orchestrator/references/known_skills.md`
+
+## Third-Party Install Checklist
 
 1. **Request location** — For external installs, ask user: global (`-g`) or project-only?
 2. **Lock it** — Add externally installed skills to `skills-lock.json` for tracking

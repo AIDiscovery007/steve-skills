@@ -3,9 +3,13 @@ name: skill-indexer
 description: |
   Use when: need to sync/update known_skills.md, organize skill categories, or index newly installed skills
   Don't use when: user has specific execution tasks (analysis, content generation, code commit), or just needs to query a specific skill's functionality
+version: 0.1.0
+legacy_alias_of: skent-skill-indexer
 ---
 
 # Skill Indexer
+
+> Legacy alias. Canonical first-party skill: `/skent-skill-indexer` in `skills/skent-skill-indexer/`.
 
 同步和维护 `skill-orchestrator` 的 `known_skills.md` 文档。
 

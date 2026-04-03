@@ -4,9 +4,13 @@ description: |
   Use when: user says "reflect", "复盘", "/reflect", "review this session", "post-mortem".
   Don't use when: simple Q&A, one-off tasks, or skill optimization (use autoresearch-skill).
   Counter-examples: "what's the weather", "fix this bug", "optimize my skill"
+version: 0.1.0
+legacy_alias_of: skent-session-reflect
 ---
 
 # Session Reflection — GRAI + KISS Method
+
+> Legacy alias. Canonical first-party skill: `/skent-session-reflect` in `skills/skent-session-reflect/`.
 
 This skill performs deep reflection on the current session using a two-layer model:
 

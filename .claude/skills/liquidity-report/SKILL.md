@@ -3,16 +3,20 @@ name: liquidity-report
 description: |
   Use when: user requests global liquidity report, market data review, liquidity transmission analysis, or says "liquidity report" / "show me liquidity" / "market data"
   Don't use when: user needs stock analysis, technical analysis, or specific gold/silver investment advice (use gold-analyst instead)
+version: 0.1.0
+legacy_alias_of: skent-liquidity-report
 ---
 
 # liquidity-report — 全球流动性日报
+
+> Legacy alias. Canonical first-party skill: `/skent-liquidity-report` in `skills/skent-liquidity-report/`.
 
 ## 数据获取
 
 ### 纽约联储（直接 HTTP，用脚本拉）
 
 ```bash
-python3 {skillDir}/scripts/fetch_data.py
+python3 {baseDir}/scripts/fetch_data.py
 ```
 
 输出 JSON，包含：`sofr`、`onrrp`
@@ -60,7 +64,7 @@ python3 {skillDir}/scripts/fetch_data.py
 将所有数据整合为 JSON 后，调用生成脚本：
 
 ```bash
-echo '<JSON数据>' | python3 {skillDir}/scripts/generate_report.py
+echo '<JSON数据>' | python3 {baseDir}/scripts/generate_report.py
 ```
 
 **后处理 — 必须添加 MK 引用：**

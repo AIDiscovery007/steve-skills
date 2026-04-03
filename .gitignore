@@ -19,6 +19,10 @@ generated-images/
 
 # Skills output (generated reports)
 reports/
+skills/*/reports/
+skills/*/output/
+.claude/skills/*/reports/
+.claude/skills/*/output/
 .claude/skills/gold-analyst/reports/
 .claude/skills/liquidity-report/output/
 .claude/skills/news-aggregator-skill/reports/
@@ -26,9 +30,11 @@ reports/
 
 # Autoresearch output directories (per-skill experiment results)
 .claude/skills/*/autoresearch-*/
+skills/*/autoresearch-*/
 
 # Autotune output directories (per-prompt experiment results)
 .claude/skills/*/autotune-*/
+skills/*/autotune-*/
 
 # Agent/skills installed globally (symlinked skills)
 .agents/

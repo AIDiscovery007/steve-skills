@@ -3,9 +3,13 @@ name: skill-orchestrator
 description: |
   Use when: user has complex goals requiring multi-step analysis, cross-domain tasks, is unsure which skill to use, or says "help me complete XX task" / "this needs multiple tools"
   Don't use when: task is simple and straightforward, a single skill can handle it directly, or user explicitly specifies which skill to use. Counter-example: "commit these files" / "generate an image"
+version: 0.1.0
+legacy_alias_of: skent-skill-orchestrator
 ---
 
 # Skill Orchestrator — 技能编排器
+
+> Legacy alias. Canonical first-party skill: `/skent-skill-orchestrator` in `skills/skent-skill-orchestrator/`.
 
 ## Overview
 

@@ -3,9 +3,13 @@ name: autotune
 description: |
   Use when: user asks to optimize a prompt document, improve instructions, benchmark a prompt, or says "optimize this prompt" / "improve claude.md" / "autotune"
   Don't use when: user wants to optimize a Claude Code skill itself (use autoresearch-skill instead)
+version: 0.1.0
+legacy_alias_of: skent-autotune
 ---
 
 # Autotune
+
+> Legacy alias. Canonical first-party skill: `/skent-autotune` in `skills/skent-autotune/`.
 
 Most prompts work about 70% of the time. The other 30% you get garbage. The fix isn't to rewrite the prompt from scratch. It's to let an agent run it dozens of times, score every output, and tighten the instructions until that 30% disappears.
 

@@ -1,0 +1,32 @@
+{
+  "name": "skent-skills",
+  "owner": {
+    "name": "Qiaochao"
+  },
+  "metadata": {
+    "description": "First-party skent skills for macro analysis, rendering, tuning, and skill orchestration",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "skent-skills",
+      "description": "First-party skent skills from steve-skills",
+      "version": "0.1.0",
+      "author": {
+        "name": "Qiaochao"
+      },
+      "repository": "https://github.com/AIDiscovery007/steve-skills",
+      "source": "./",
+      "strict": true,
+      "skills": [
+        "./skills/skent-autotune",
+        "./skills/skent-gold-analyst",
+        "./skills/skent-html-renderer",
+        "./skills/skent-liquidity-report",
+        "./skills/skent-session-reflect",
+        "./skills/skent-skill-indexer",
+        "./skills/skent-skill-orchestrator"
+      ]
+    }
+  ]
+}

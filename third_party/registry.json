@@ -1,0 +1,58 @@
+[
+  {
+    "name": "autoresearch",
+    "path": ".claude/skills/autoresearch-skill",
+    "upstream": "github/awesome-copilot@autoresearch",
+    "sourceType": "registry-match",
+    "includedInMarketplace": false,
+    "notes": "Recorded from npx skills registry search; kept as third-party."
+  },
+  {
+    "name": "find-skills",
+    "path": ".claude/skills/find-skills",
+    "upstream": "vercel-labs/skills@find-skills",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Locked in skills-lock.json."
+  },
+  {
+    "name": "frontend-design",
+    "path": ".claude/skills/frontend-design",
+    "upstream": "anthropics/skills@frontend-design",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Locked in skills-lock.json; currently installed via local compatibility path."
+  },
+  {
+    "name": "git-cleanup",
+    "path": ".claude/skills/git-cleanup",
+    "upstream": "trailofbits/skills@git-cleanup",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Locked in skills-lock.json."
+  },
+  {
+    "name": "git-commit",
+    "path": ".claude/skills/git-commit",
+    "upstream": "github/awesome-copilot@git-commit",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Locked in skills-lock.json."
+  },
+  {
+    "name": "nano-banana-2",
+    "path": ".claude/skills/nano-banana-2",
+    "upstream": "inferen-sh/skills@nano-banana-2",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Locked in skills-lock.json."
+  },
+  {
+    "name": "news-aggregator-skill",
+    "path": ".claude/skills/news-aggregator-skill",
+    "upstream": "cclank/news-aggregator-skill@news-aggregator-skill",
+    "sourceType": "github",
+    "includedInMarketplace": false,
+    "notes": "Upstream repo is referenced directly inside the local README."
+  }
+]

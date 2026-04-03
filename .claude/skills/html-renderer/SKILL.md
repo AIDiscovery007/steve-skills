@@ -1,9 +1,13 @@
 ---
 name: html-renderer
 description: Render Markdown reports as beautiful HTML pages with auto browser open. Use when user wants to view a generated report (from gold-analyst, liquidity-report, news-aggregator, etc.) in a browser instead of TUI. Also use when user says "render this", "open in browser", "view as HTML", "pretty print this report", or asks to make a Markdown report look better. Trigger proactively when any skill outputs a Markdown report and the user would benefit from a visual HTML version.
+version: 0.1.0
+legacy_alias_of: skent-html-renderer
 ---
 
 # HTML Renderer
+
+> Legacy alias. Canonical first-party skill: `/skent-html-renderer` in `skills/skent-html-renderer/`.
 
 Render Markdown string into a beautifully styled HTML page that auto-opens in the browser.
 
